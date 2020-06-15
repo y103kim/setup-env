@@ -38,4 +38,7 @@ ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 cat $ENV/tmux-extend >> ~/.tmux.conf.local
 
+# fzf
+[ ! -d ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+[ ! -f ~/.fzf.zsh ] && ~/.fzf/install
 
