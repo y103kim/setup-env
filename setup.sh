@@ -29,7 +29,8 @@ cp ~/.zprezto/runcoms/zshrc ~/.zshrc
 EOM
 zsh -c "$ZSH_SETUP"
 sed -i 's/sorin/powerlevel10k/g' ~/.zpreztorc
-cat $ENV/zshrc-extend >> ~/.zshrc
+cat $ENV/zshrc-extend > ~/.zshrc
+cp $ENV/p10k.zsh ~/.p10k.zsh
 
 # TMUX
 [ ! -d ~/.tmux ] && git clone https://github.com/gpakosz/.tmux.git
