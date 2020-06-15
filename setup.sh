@@ -41,5 +41,6 @@ cat $ENV/tmux-extend >> ~/.tmux.conf.local
 
 # fzf
 [ ! -d ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+git --git-dir=$HOME/.fzf/.git pull origin master
 [ ! -f ~/.fzf.zsh ] && ~/.fzf/install
 
