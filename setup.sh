@@ -44,3 +44,9 @@ cat $ENV/tmux-extend >> ~/.tmux.conf.local
 git --git-dir=$HOME/.fzf/.git pull origin master
 [ ! -f ~/.fzf.zsh ] && ~/.fzf/install
 
+# VIM
+if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
+cp $ENV/vimrc ~/.vimrc
+vim +PluginInstall +qall
