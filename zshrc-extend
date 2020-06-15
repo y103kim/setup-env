@@ -1,0 +1,8 @@
+# BASIC
+if [ ! -z $WSL_DISTRO_NAME ]; then
+  export PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+fi
+export DISPLAY=192.168.0.25:0.0
+export GIT_EDITOR=vim
+export EDITOR=vim
+source ~/.zprezto/modules/autosuggestions/external/zsh-autosuggestions.zsh
