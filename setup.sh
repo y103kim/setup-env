@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Setup packages for ubuntu 20.04
-if [ $(lsb_release -d | grep -c "Ubuntu 20.04 LTS") = 1 ]; then
+if [ $(lsb_release -d | grep -c "Ubuntu") = 1 ]; then
   if [ $(dpkg -l | grep -c build-essential) = 0 ]; then
     sudo apt-get update
     sudo apt-get install -y build-essential python3-venv vim git zsh xclip tree
