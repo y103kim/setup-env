@@ -50,3 +50,15 @@ if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
 fi
 cp $ENV/vimrc ~/.vimrc
 vim +PluginInstall +qall
+
+# Create env base
+BASEPATH=$HOME/env
+mkdir -p $HOME/env/bin
+
+# Nodejs
+NODE_VERSION="v14.5.0"
+if [ ! -f node-$NODE_VERSION-linux-x64.tar.xz ]; then
+  wget https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-x64.tar.xz
+fi
+tar xf node-$NODE_VERSION-linux-x64.tar.xz -C env
+mv $BASEPATH/node-$NODE_VERSION-linux-x64 $BASEPATH/node
