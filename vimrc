@@ -117,9 +117,13 @@ let g:airline_theme='codedark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+"" xclip
 vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>
 map <leader>ya :call system("xclip -i -selection clipboard", getreg("%"))<CR>
 map <leader>yf :call system("xclip -i -selection clipboard", expand("%:t"))<CR>
+
+"" multi-cursor
+let g:multi_cursor_quit_keys='<Esc>,<C-c>'
 
 "" Easy motion setting
 map s <Nop>
