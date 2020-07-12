@@ -53,12 +53,13 @@ vim +PluginInstall +qall
 
 # Create env base
 BASEPATH=$HOME/env
+ARCHIVE=$HOME/env/archive
 mkdir -p $HOME/env/bin
 
 # Nodejs
 NODE_VERSION="v14.5.0"
-if [ ! -f node-$NODE_VERSION-linux-x64.tar.xz ]; then
-  wget https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-x64.tar.xz
+NODE_TAR=$ARCHIVE/node-$NODE_VERSION-linux-x64.tar.xz
+if [ ! -f $NODE_TAR ]; then
+  wget https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-x64.tar.xz -P $ARCHIVE
 fi
-tar xf node-$NODE_VERSION-linux-x64.tar.xz -C env
-mv $BASEPATH/node-$NODE_VERSION-linux-x64 $BASEPATH/node
+tar xf $NODE_TAR -C $BASEPATH/node --strip-components=1
