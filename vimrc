@@ -1,3 +1,23 @@
+" set the runtime path to include Vundle and initialize
+set rtp+=$HOME/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'commentary.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'terryma/vim-expand-region'
+Plugin 'tomasiser/vim-code-dark'
+Plugin 'francoiscabrol/ranger.vim'
+Plugin 'fatih/vim-go'
+call vundle#end()
+filetype plugin indent on    " required
+
 "" default setting
 syntax on
 set ai
@@ -39,7 +59,6 @@ function! NT()
   endif
   call SummarizeTabs()
 endfunction
-
 
 function! SummarizeTabs()
   try
@@ -116,26 +135,6 @@ map H <Plug>(expand_region_shrink)
 "" GitGutter
 set updatetime=100
 autocmd BufWritePost * GitGutter
-
-" set the runtime path to include Vundle and initialize
-set rtp+=$HOME/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'commentary.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'terryma/vim-expand-region'
-Plugin 'tomasiser/vim-code-dark'
-Plugin 'francoiscabrol/ranger.vim'
-Plugin 'fatih/vim-go'
-call vundle#end()
-filetype plugin indent on    " required
 
 "" color scheme
 " colorscheme wombat256dave
