@@ -25,10 +25,14 @@ fi
 export PATH=$HOME/env/node/bin:$PATH
 export PATH=$HOME/env/bin:$PATH
 export PATH=$HOME/env/platform-tools:$PATH
-export DISPLAY=192.168.0.25:0.0
 export GIT_EDITOR=vim
 export EDITOR=vim
 source ~/.zprezto/modules/autosuggestions/external/zsh-autosuggestions.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+HOSTNAME=$(hostname)
+export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
+[ $HOSTNAME = "DESKTOP-4U36KIC" ] && export DISPLAY=$WSL_HOST:0.0
+[ $HOSTNAME = "LAPTOP-8KRMGL3F" ] && export DISPLAY=$WSL_HOST:10.0
