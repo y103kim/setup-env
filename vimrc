@@ -57,10 +57,6 @@ function! SummarizeTabs()
   endtry
 endfunction
 
-"" color scheme
-" colorscheme wombat256dave
-colorscheme codedark
-
 "" Trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
@@ -141,4 +137,7 @@ Plugin 'fatih/vim-go'
 call vundle#end()
 filetype plugin indent on    " required
 
+"" color scheme
+" colorscheme wombat256dave
+colorscheme codedark
 
