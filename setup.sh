@@ -57,9 +57,19 @@ ARCHIVE=$HOME/env/archive
 mkdir -p $HOME/env/bin
 
 # Nodejs
+mkdir -p $BASEPATH/node
 NODE_VERSION="v14.5.0"
 NODE_TAR=$ARCHIVE/node-$NODE_VERSION-linux-x64.tar.xz
 if [ ! -f $NODE_TAR ]; then
   wget https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-x64.tar.xz -P $ARCHIVE
 fi
 tar xf $NODE_TAR -C $BASEPATH/node --strip-components=1
+
+# Golang
+GO_VERSION="1.14.6"
+mkdir -p $BASEPATH/go
+GO_TAR=$ARCHIVE/go$GO_VERSION.linux-amd64.tar.gz
+if [ ! -f $GO_TAR ]; then
+  wget https://golang.org/dl/go$GO_VERSION.linux-amd64.tar.gz -P $ARCHIVE
+fi
+tar xf $GO_TAR -C $BASEPATH/go --strip-components=1

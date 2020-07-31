@@ -23,6 +23,7 @@ if [ ! -z $WSL_DISTRO_NAME ]; then
   export PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 fi
 export PATH=$HOME/env/node/bin:$PATH
+export PATH=$HOME/env/go/bin:$PATH
 export PATH=$HOME/env/bin:$PATH
 export PATH=$HOME/env/platform-tools:$PATH
 export GIT_EDITOR=vim
