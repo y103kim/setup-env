@@ -15,6 +15,7 @@ Plugin 'terryma/vim-expand-region'
 Plugin 'tomasiser/vim-code-dark'
 Plugin 'francoiscabrol/ranger.vim'
 Plugin 'fatih/vim-go'
+Plugin 'nathanaelkane/vim-indent-guides'
 call vundle#end()
 filetype plugin indent on    " required
 
@@ -144,3 +145,8 @@ autocmd BufWritePost * GitGutter
 " colorscheme wombat256dave
 colorscheme codedark
 
+"" vim-indent-guide
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd  ctermbg=235
+hi IndentGuidesEven ctermbg=236
