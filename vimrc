@@ -124,7 +124,7 @@ map <leader>ya :call system("xclip -i -selection clipboard", getreg("%"))<CR>
 map <leader>yf :call system("xclip -i -selection clipboard", expand("%:t"))<CR>
 
 "" multi-cursor
-noremap <C-c> :call multiple_cursors#quit()<CR>
+nnoremap <C-c> :call multiple_cursors#quit()<CR>
 
 "" Easy motion setting
 map s <Nop>
