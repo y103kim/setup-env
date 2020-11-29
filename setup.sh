@@ -34,6 +34,7 @@ cp $ENV/p10k.zsh ~/.p10k.zsh
 
 # TMUX
 [ ! -d ~/.tmux ] && git clone https://github.com/gpakosz/.tmux.git
+git --git-dir=$HOME/.tmux/.git checkout .
 git --git-dir=$HOME/.tmux/.git pull origin master
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
@@ -41,6 +42,7 @@ cat $ENV/tmux-extend >> ~/.tmux.conf.local
 
 # fzf
 [ ! -d ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+git --git-dir=$HOME/.fzf/.git checkout .
 git --git-dir=$HOME/.fzf/.git pull origin master
 [ ! -f ~/.fzf.zsh ] && ~/.fzf/install
 
@@ -49,6 +51,7 @@ if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 cp $ENV/vimrc ~/.vimrc
+vim +PluginUpdate +qall
 vim +PluginInstall +qall
 
 # Create env base
