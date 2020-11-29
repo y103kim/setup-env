@@ -29,6 +29,7 @@ set nu
 set imi=1
 set hidden
 let mapleader=","
+set mouse=a
 
 "" tab settings
 set ts=2
