@@ -58,6 +58,18 @@ if [ "$1" == "as" ] ; then
   make -j
   make install
   popd
+
+  # Tmux
+  rm -rf $ARCHIVE/tmux*
+  gh release download -R tmux/tmux -p "*.tar.gz" -D $ARCHIVE
+  TMUX_TAR=$(ls $ARCHIVE/tmux*)
+  mkdir -p $BASEPATH/tmux
+  tar xf $TMUX_TAR -C $BASEPATH/tmux --strip-components=1
+  pushd $BASEPATH/tmux
+  CFLAGS="-I$HOME/env/usr/include" LDFLAGS="-Wl,-rpath -Wl,$MY_LIB" ./configure --prefix="$USR_BASE"
+  make -j
+  make install
+  popd
 fi
 
 #########################  Install pulgins ##########################
