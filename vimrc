@@ -40,6 +40,13 @@ set sw=2
 set sts=2
 set expandtab
 
+" Gnu style indent settings
+function! GnuIndent()
+  set cinoptions=>4,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+2,(0,u0,w1,m1
+  set shiftwidth=2
+  set tabstop=8
+endfunction
+
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* ET call ET()
 function! ET()
