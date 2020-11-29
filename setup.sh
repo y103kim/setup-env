@@ -90,6 +90,14 @@ if [ "$1" == "as" ] ; then
     make install
     popd
   fi
+
+  if [ "$2" == "re" ] || [ ! -f $USR_BASE/rg/rg ] ; then
+    rm -rf $ARCHIVE/ripgrep*
+    gh release download -R BurntSushi/ripgrep -p "*x86*linux*.tar.gz" -D $ARCHIVE
+    RG_TAR=$(ls $ARCHIVE/ripgrep*)
+    mkdir -p $BASEPATH/ripgrep
+    tar xf $RG_TAR -C $BASEPATH/ripgrep --strip-components=1
+  fi
 fi
 
 #########################  Install pulgins ##########################

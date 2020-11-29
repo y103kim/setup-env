@@ -24,6 +24,7 @@ if [ ! -z $WSL_DISTRO_NAME ]; then
 fi
 export PATH=$HOME/env/node/bin:$PATH
 export PATH=$HOME/env/go/bin:$PATH
+export PATH=$HOME/env/ripgrep:$PATH
 export PATH=$HOME/env/usr/bin:$PATH
 export PATH=$HOME/env/platform-tools:$PATH
 export GIT_EDITOR=vim
