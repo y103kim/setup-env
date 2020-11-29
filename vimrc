@@ -7,15 +7,15 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'commentary.vim'
 Plugin 'tpope/vim-surround'
-Plugin 'easymotion/vim-easymotion'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tomasiser/vim-code-dark'
-Plugin 'francoiscabrol/ranger.vim'
 Plugin 'fatih/vim-go'
 Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'francoiscabrol/ranger.vim'
+" Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'easymotion/vim-easymotion'
 call vundle#end()
 filetype plugin indent on    " required
 
@@ -107,8 +107,8 @@ map <leader>cr :source ~/.vimrc<cr>
 map <leader>ef :NERDTreeToggle<CR>
 
 "" Ranger setup
-map <leader>er :Ranger<CR>
-let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
+" map <leader>er :Ranger<CR>
+" let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
 
 "" Airline setup
 " set laststatus=2
@@ -123,15 +123,15 @@ vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>
 map <leader>ya :call system("xclip -i -selection clipboard", getreg("%"))<CR>
 map <leader>yf :call system("xclip -i -selection clipboard", expand("%:t"))<CR>
 
-"" multi-cursor
-nnoremap <C-c> :call multiple_cursors#quit()<CR>
+" nnoremap <C-c> :call multiple_cursors#quit()<CR>
+" let g:multi_cursor_quit_keys='<Esc>,<C-c>'
 
 "" Easy motion setting
-map s <Nop>
-nmap ss <Plug>(easymotion-overwin-f2)
-map sl <Plug>(easymotion-bd-jk)
-nmap sl <Plug>(easymotion-overwin-line)
-let g:EasyMotion_smartcase = 0
+" map s <Nop>
+" nmap ss <Plug>(easymotion-overwin-f2)
+" map sl <Plug>(easymotion-bd-jk)
+" nmap sl <Plug>(easymotion-overwin-line)
+" let g:EasyMotion_smartcase = 0
 
 "" Vim expand region setting
 map L <Plug>(expand_region_expand)
