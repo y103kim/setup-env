@@ -11,7 +11,7 @@ BASEPATH=$HOME/env
 ARCHIVE=$HOME/env/archive
 mkdir -p $HOME/env/bin
 NODE_VERSION="v14.5.0"
-GO_VERSION="1.14.6"
+GO_VERSION=$(curl -s https://golang.org/dl/ | grep -m 1 'class="download downloadBox"' | grep -Poh "\\d+\\.\\d+\\.\\d+")
 
 # Nodejs
 NVM_DIR="$BASEPATH/nvm"
