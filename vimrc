@@ -116,8 +116,14 @@ map <leader>fo <Nop>
 
 " Fzf
 map <leader>fr :Rg <C-R>=expand("<cword>")<CR><CR>
-map <leader>ff :GFiles <CR>
-map <leader>fs :GFiles! <CR>
+silent! !git rev-parse --is-inside-work-tree 1>/dev/null 2>&1
+if v:shell_error == 0
+  map <leader>ff :GFiles <CR>
+  map <leader>fs :GFiles! <CR>
+else
+  map <leader>ff :Files <CR>
+  map <leader>fs :Files <CR>
+endif
 map <leader>fb :Buffers <CR>
 map <leader>fb :Buffers <CR>
 map <leader>ft :Tags <C-R>=expand("<cword>")<CR><CR>
