@@ -13,6 +13,9 @@ Plugin 'terryma/vim-expand-region'
 Plugin 'tomasiser/vim-code-dark'
 Plugin 'fatih/vim-go'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'mg979/vim-visual-multi'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
 " Plugin 'francoiscabrol/ranger.vim'
 " Plugin 'terryma/vim-multiple-cursors'
 " Plugin 'easymotion/vim-easymotion'
@@ -107,9 +110,18 @@ map <leader>cr :source ~/.vimrc<cr>
 "" NerdTree setup
 map <leader>ef :NERDTreeToggle<CR>
 
-"" Ranger setup
-" map <leader>er :Ranger<CR>
-" let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
+" <leader>f setup
+" FIXME: map formatting function according to file format
+map <leader>fo <Nop>
+
+" Fzf
+map <leader>fr :Rg <C-R>=expand("<cword>")<CR><CR>
+map <leader>ff :GFiles <CR>
+map <leader>fs :GFiles! <CR>
+map <leader>fb :Buffers <CR>
+map <leader>fb :Buffers <CR>
+map <leader>ft :Tags <C-R>=expand("<cword>")<CR><CR>
+cnoreabbrev rg Rg
 
 "" Airline setup
 " set laststatus=2
