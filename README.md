@@ -7,3 +7,18 @@
 5. Install Ubuntu 20.04 in WSL2
 6. Install Docker for windows
 
+# Process to setup
+
+```
+./cli-setup.sh
+# Must login into github.com, not enterprise github
+gh auth login
+./setup.sh
+```
+
+# Process to update
+
+```
+./setup.sh
+```
+
