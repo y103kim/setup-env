@@ -10,6 +10,8 @@ cd $HOME
 if [ "$1" == "as" ] ; then
   # Create env base
   BASEPATH=$HOME/env
+  USR_BASE=$BASEPATH/usr
+  MY_LIB=$BASEPATH/usr/lib
   ARCHIVE=$HOME/env/archive
   mkdir -p $HOME/env/bin
   NODE_VERSION="v14.5.0"
@@ -32,6 +34,18 @@ if [ "$1" == "as" ] ; then
     wget https://golang.org/dl/go$GO_VERSION.linux-amd64.tar.gz -P $ARCHIVE
   fi
   tar xf $GO_TAR -C $BASEPATH/go --strip-components=1
+
+  # Libevent
+  rm -rf $ARCHIVE/libevent*
+  gh release download -R libevent/libevent -p "*.tar.gz" -D $ARCHIVE
+  LIBEVENT_TAR=$(ls $ARCHIVE/libevent*)
+  mkdir -p $BASEPATH/libevent
+  tar xf $LIBEVENT_TAR -C $BASEPATH/libevent --strip-components=1
+  pushd $BASEPATH/libevent
+  ./configure --prefix="$USR_BASE"
+  make -j
+  make install
+  popd
 fi
 
 #########################  Install pulgins ##########################
