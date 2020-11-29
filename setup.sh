@@ -36,40 +36,44 @@ if [ "$1" == "as" ] ; then
   tar xf $GO_TAR -C $BASEPATH/go --strip-components=1
 
   # Libevent
-  rm -rf $ARCHIVE/libevent*
-  gh release download -R libevent/libevent -p "*.tar.gz" -D $ARCHIVE
-  LIBEVENT_TAR=$(ls $ARCHIVE/libevent*)
-  mkdir -p $BASEPATH/libevent
-  tar xf $LIBEVENT_TAR -C $BASEPATH/libevent --strip-components=1
-  pushd $BASEPATH/libevent
-  ./configure --prefix="$USR_BASE"
-  make -j
-  make install
-  popd
+  if [ "$2" == "re" ] || [ ! -f $USR_BASE/lib/libevent.la ] ; then
+    rm -rf $ARCHIVE/libevent*
+    gh release download -R libevent/libevent -p "*.tar.gz" -D $ARCHIVE
+    LIBEVENT_TAR=$(ls $ARCHIVE/libevent*)
+    mkdir -p $BASEPATH/libevent
+    tar xf $LIBEVENT_TAR -C $BASEPATH/libevent --strip-components=1
+    pushd $BASEPATH/libevent
+    ./configure --prefix="$USR_BASE"
+    make -j
+    make install
+    popd
+  fi
 
   # Ncurses
-  NCURSES_TAR=$ARCHIVE/ncurses-6.2.tar.gz
-  NCURSES_URL=https://invisible-mirror.net/archives/ncurses/ncurses-6.2.tar.gz
-  [ ! -f $NCURSES_TAR ] && wget -O $NCURSES_TAR $NCURSES_URL
-  mkdir -p $BASEPATH/ncurses
-  tar xf $NCURSES_TAR -C $BASEPATH/ncurses --strip-components=1
-  pushd $BASEPATH/ncurses
-  ./configure --prefix="$USR_BASE"
-  make -j
-  make install
-  popd
+  if [ "$2" == "re" ] || [ ! -f $USR_BASE/lib/libncurses.a ] ; then
+    NCURSES_TAR=$ARCHIVE/ncurses-6.2.tar.gz
+    NCURSES_URL=https://invisible-mirror.net/archives/ncurses/ncurses-6.2.tar.gz
+    [ ! -f $NCURSES_TAR ] && wget -O $NCURSES_TAR $NCURSES_URL
+    mkdir -p $BASEPATH/ncurses
+    tar xf $NCURSES_TAR -C $BASEPATH/ncurses --strip-components=1
+    pushd $BASEPATH/ncurses
+    ./configure --prefix="$USR_BASE"
+    make -j
+    make install
+    popd
+  fi
 
   # Tmux
-  rm -rf $ARCHIVE/tmux*
-  gh release download -R tmux/tmux -p "*.tar.gz" -D $ARCHIVE
-  TMUX_TAR=$(ls $ARCHIVE/tmux*)
-  mkdir -p $BASEPATH/tmux
-  tar xf $TMUX_TAR -C $BASEPATH/tmux --strip-components=1
-  pushd $BASEPATH/tmux
-  CFLAGS="-I$HOME/env/usr/include" LDFLAGS="-Wl,-rpath -Wl,$MY_LIB" ./configure --prefix="$USR_BASE"
-  make -j
-  make install
-  popd
+  if [ "$2" == "re" ] || [ ! -f $USR_BASE/bin/tmux ] ; then
+    TMUX_TAR=$(ls $ARCHIVE/tmux*)
+    mkdir -p $BASEPATH/tmux
+    tar xf $TMUX_TAR -C $BASEPATH/tmux --strip-components=1
+    pushd $BASEPATH/tmux
+    CFLAGS="-I$HOME/env/usr/include" LDFLAGS="-Wl,-rpath -Wl,$MY_LIB" ./configure --prefix="$USR_BASE"
+    make -j
+    make install
+    popd
+  fi
 fi
 
 #########################  Install pulgins ##########################
