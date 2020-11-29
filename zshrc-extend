@@ -33,6 +33,8 @@ source ~/.zprezto/modules/autosuggestions/external/zsh-autosuggestions.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+alias pyctags="ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags . $(python -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))")"
+
 HOSTNAME=$(hostname)
 export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
 [ $HOSTNAME = "DESKTOP-4U36KIC" ] && export DISPLAY=$WSL_HOST:0.0
