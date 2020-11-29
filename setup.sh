@@ -76,6 +76,20 @@ if [ "$1" == "as" ] ; then
     make install
     popd
   fi
+
+  # Zsh
+  if [ "$2" == "re" ] || [ ! -f $USR_BASE/bin/zsh ] ; then
+    ZSH_URL="https://sourceforge.net/projects/zsh/files/zsh/5.8/zsh-5.8.tar.xz"
+    ZSH_TAR=$ARCHIVE/zsh-5.8.tar.xz
+    [ ! -f $ZSH_TAR ] && wget -O $ZSH_TAR $ZSH_URL
+    mkdir -p $BASEPATH/zsh
+    tar xf $ZSH_TAR -C $BASEPATH/zsh --strip-components=1
+    pushd $BASEPATH/zsh
+    ./configure --prefix="$USR_BASE"
+    make -j
+    make install
+    popd
+  fi
 fi
 
 #########################  Install pulgins ##########################
