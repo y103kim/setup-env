@@ -6,13 +6,13 @@ echo ENV=$ENV
 cd $HOME
 
 #########################  Archive Setup ##########################
+BASEPATH=$HOME/env
+USR_BASE=$BASEPATH/usr
+MY_LIB=$BASEPATH/usr/lib
+ARCHIVE=$HOME/env/archive
 
 if [ "$1" == "as" ] ; then
   # Create env base
-  BASEPATH=$HOME/env
-  USR_BASE=$BASEPATH/usr
-  MY_LIB=$BASEPATH/usr/lib
-  ARCHIVE=$HOME/env/archive
   mkdir -p $HOME/env/bin
   NODE_VERSION="v14.5.0"
   GO_VERSION=$(curl -s https://golang.org/dl/ | grep -m 1 'class="download downloadBox"' | grep -Poh "\\d+\\.\\d+\\.\\d+")
@@ -92,22 +92,22 @@ cat $ENV/zshrc-extend > ~/.zshrc
 cp $ENV/p10k.zsh ~/.p10k.zsh
 
 # TMUX
-[ ! -d ~/.tmux ] && git clone https://github.com/gpakosz/.tmux.git
-pushd ~/.tmux
+[ ! -d $BASEPATH/tmux_conf ] && git clone https://github.com/gpakosz/.tmux.git $BASEPATH/tmux_conf
+pushd $BASEPATH/tmux_conf
 git checkout .
 git pull origin master
+cp $BASEPATH/tmux_conf/.tmux.conf ~
+cp $BASEPATH/tmux_conf/.tmux.conf.local ~
 popd
-ln -s -f .tmux/.tmux.conf
-cp .tmux/.tmux.conf.local .
 cat $ENV/tmux-extend >> ~/.tmux.conf.local
 
 # fzf
-[ ! -d ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-pushd ~/.fzf
+[ ! -d $BASEPATH/fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git $BASEPATH/fzf
+pushd $BASEPATH/fzf
 git checkout .
 git pull origin master
 popd
-[ ! -f ~/.fzf.zsh ] && ~/.fzf/install
+[ ! -f ~/.fzf.zsh ] && $BASEPATH/fzf/install
 
 # VIM
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
