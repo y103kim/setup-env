@@ -69,16 +69,20 @@ cp $ENV/p10k.zsh ~/.p10k.zsh
 
 # TMUX
 [ ! -d ~/.tmux ] && git clone https://github.com/gpakosz/.tmux.git
-git --git-dir=$HOME/.tmux/.git checkout .
-git --git-dir=$HOME/.tmux/.git pull origin master
+pushd ~/.tmux
+git checkout .
+git pull origin master
+popd
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 cat $ENV/tmux-extend >> ~/.tmux.conf.local
 
 # fzf
 [ ! -d ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-git --git-dir=$HOME/.fzf/.git checkout .
-git --git-dir=$HOME/.fzf/.git pull origin master
+pushd ~/.fzf
+git checkout .
+git pull origin master
+popd
 [ ! -f ~/.fzf.zsh ] && ~/.fzf/install
 
 # VIM
