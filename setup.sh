@@ -46,6 +46,18 @@ if [ "$1" == "as" ] ; then
   make -j
   make install
   popd
+
+  # Ncurses
+  NCURSES_TAR=$ARCHIVE/ncurses-6.2.tar.gz
+  NCURSES_URL=https://invisible-mirror.net/archives/ncurses/ncurses-6.2.tar.gz
+  [ ! -f $NCURSES_TAR ] && wget -O $NCURSES_TAR $NCURSES_URL
+  mkdir -p $BASEPATH/ncurses
+  tar xf $NCURSES_TAR -C $BASEPATH/ncurses --strip-components=1
+  pushd $BASEPATH/ncurses
+  ./configure --prefix="$USR_BASE"
+  make -j
+  make install
+  popd
 fi
 
 #########################  Install pulgins ##########################
