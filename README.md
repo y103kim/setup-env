@@ -14,6 +14,7 @@
 # Must login into github.com, not enterprise github
 gh auth login
 ./setup.sh
+sudo chsh -s $HOME/env/usr/bin/zsh doocong
 ```
 
 # Process to update

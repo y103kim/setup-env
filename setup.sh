@@ -65,11 +65,13 @@ if [ "$1" == "as" ] ; then
 
   # Tmux
   if [ "$2" == "re" ] || [ ! -f $USR_BASE/bin/tmux ] ; then
+    rm -rf $ARCHIVE/tmux*
+    gh release download -R tmux/tmux -p "*.tar.gz" -D $ARCHIVE
     TMUX_TAR=$(ls $ARCHIVE/tmux*)
     mkdir -p $BASEPATH/tmux
     tar xf $TMUX_TAR -C $BASEPATH/tmux --strip-components=1
     pushd $BASEPATH/tmux
-    CFLAGS="-I$HOME/env/usr/include" LDFLAGS="-Wl,-rpath -Wl,$MY_LIB" ./configure --prefix="$USR_BASE"
+    CFLAGS="-I$HOME/env/usr/include" LDFLAGS="-Wl,-rpath=$MY_LIB -L$MY_LIB" ./configure --prefix="$USR_BASE"
     make -j
     make install
     popd
@@ -119,6 +121,6 @@ if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
 fi
 cp $ENV/vimrc ~/.vimrc
 vim +PluginInstall +qall
-if [ "$1" == "as" ] ; then
+if [ "$2" == "re" ] ; then
   vim +PluginUpdate +qall
 fi
