@@ -6,29 +6,31 @@ echo ENV=$ENV
 cd $HOME
 
 #########################  Archive Setup ##########################
-# Create env base
-BASEPATH=$HOME/env
-ARCHIVE=$HOME/env/archive
-mkdir -p $HOME/env/bin
-NODE_VERSION="v14.5.0"
-GO_VERSION=$(curl -s https://golang.org/dl/ | grep -m 1 'class="download downloadBox"' | grep -Poh "\\d+\\.\\d+\\.\\d+")
 
-# Nodejs
-NVM_DIR="$BASEPATH/nvm"
-mkdir -p $NVM_DIR
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-nvm install node
+if [ "$1" == "as" ] ; then
+  # Create env base
+  BASEPATH=$HOME/env
+  ARCHIVE=$HOME/env/archive
+  mkdir -p $HOME/env/bin
+  NODE_VERSION="v14.5.0"
+  GO_VERSION=$(curl -s https://golang.org/dl/ | grep -m 1 'class="download downloadBox"' | grep -Poh "\\d+\\.\\d+\\.\\d+")
 
-# Golang
-mkdir -p $BASEPATH/go
-GO_TAR=$ARCHIVE/go$GO_VERSION.linux-amd64.tar.gz
-if [ ! -f $GO_TAR ]; then
-  wget https://golang.org/dl/go$GO_VERSION.linux-amd64.tar.gz -P $ARCHIVE
+  # Nodejs
+  NVM_DIR="$BASEPATH/nvm"
+  mkdir -p $NVM_DIR
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  nvm install node
+
+  # Golang
+  mkdir -p $BASEPATH/go
+  GO_TAR=$ARCHIVE/go$GO_VERSION.linux-amd64.tar.gz
+  if [ ! -f $GO_TAR ]; then
+    wget https://golang.org/dl/go$GO_VERSION.linux-amd64.tar.gz -P $ARCHIVE
+  fi
+  tar xf $GO_TAR -C $BASEPATH/go --strip-components=1
 fi
-tar xf $GO_TAR -C $BASEPATH/go --strip-components=1
-
 
 #########################  Install pulgins ##########################
 # zsh
@@ -69,4 +71,6 @@ if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
 fi
 cp $ENV/vimrc ~/.vimrc
 vim +PluginInstall +qall
-vim +PluginUpdate +qall
+if [ "$1" == "as" ] ; then
+  vim +PluginUpdate +qall
+fi
