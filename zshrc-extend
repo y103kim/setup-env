@@ -34,6 +34,7 @@ source ~/.zprezto/modules/autosuggestions/external/zsh-autosuggestions.zsh
 # Default source
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[ -f ~/env/_ripgrep ] && source ~/env/_ripgrep
 
 export NVM_DIR="$HOME/env/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

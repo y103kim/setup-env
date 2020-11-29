@@ -129,6 +129,9 @@ cp $BASEPATH/tmux_conf/.tmux.conf.local ~
 popd
 cat $ENV/tmux-extend >> ~/.tmux.conf.local
 
+# ripgrep
+cp $ENV/_ripgrep $BASEPATH
+
 # fzf
 [ ! -d $BASEPATH/fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git $BASEPATH/fzf
 pushd $BASEPATH/fzf
