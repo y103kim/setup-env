@@ -14,12 +14,9 @@ NODE_VERSION="v14.5.0"
 GO_VERSION="1.14.6"
 
 # Nodejs
-mkdir -p $BASEPATH/node
-NODE_TAR=$ARCHIVE/node-$NODE_VERSION-linux-x64.tar.xz
-if [ ! -f $NODE_TAR ]; then
-  wget https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-x65.tar.xz -P $ARCHIVE
-fi
-tar xf $NODE_TAR -C $BASEPATH/node --strip-components=1
+NVM_DIR="$BASEPATH/nvm"
+mkdir -p $NVM_DIR
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
 # Golang
 mkdir -p $BASEPATH/go
