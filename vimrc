@@ -11,7 +11,7 @@ Plugin 'commentary.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tomasiser/vim-code-dark'
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'mg979/vim-visual-multi'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
