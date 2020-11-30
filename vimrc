@@ -34,6 +34,8 @@ set hidden
 let mapleader=","
 set mouse=a
 set backspace=2
+set updatetime=200
+set colorcolumn=100
 
 "" tab settings
 set ts=2
