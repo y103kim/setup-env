@@ -33,6 +33,7 @@ set imi=1
 set hidden
 let mapleader=","
 set mouse=a
+set backspace=2
 
 "" tab settings
 set ts=2
