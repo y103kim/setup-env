@@ -179,4 +179,6 @@ hi IndentGuidesOdd  ctermbg=235
 hi IndentGuidesEven ctermbg=236
 
 "" hls color
+set hls
 hi Search cterm=NONE ctermfg=black ctermbg=yellow
+map <leader>/ :let @/ = ""<cr>
