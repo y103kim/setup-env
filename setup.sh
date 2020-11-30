@@ -186,5 +186,6 @@ git config --global color.diff.new        "green bold"
 git config --global color.diff.whitespace "red reverse"
 popd
 
-# setup KEYWORDS
+# setup miscs
 cp $ENV/KEYWORDS $BASEPATH
+cp $ENV/ccc $USR_BASE/bin
