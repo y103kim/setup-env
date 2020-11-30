@@ -82,4 +82,17 @@ zstyle ':completion:*' format '-- %d --'
 # enhancd
 source ~/env/enhancd/init.sh
 
+# KEYWORDS
+fzf-keyword-widget() {
+  local selected num
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+  selected=( $( cat $HOME/env/KEYWORDS | fzf -m --height 60% --border --bind=tab:toggle | sed 's/^[a-z]* *: //') )
+  RBUFFER=$selected
+  zle fzf-redraw-prompt
+  zle end-of-line
+  return $ret
+}
+zle     -N   fzf-keyword-widget
+bindkey '^q' fzf-keyword-widget
+
 source ~/.zshrc-local

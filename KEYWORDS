@@ -1,0 +1,15 @@
+gcpm    : git commit -pm "DBGSW-
+gcam    : git commit -as --amend
+gcamne  : git commit -as --amend --no-edit
+gchd    : git checkout -- .
+gpgh    : git push github HEAD:
+gpor    : git push origin HEAD:
+gpy     : git push y103 HEAD:
+sv      : source ~/workspace/DI/venv/bin/activate
+sz      : source ~/.zshrc
+din     : python -m dicore -t normal $D/
+disn    : python -m dicore -it normal $D/
+diin    : python -m dicore -st normal $D/
+dig     : python -m dicore -t glance $D/
+tmn     : tmux new -s  
+tma     : tmux attach -t 

@@ -165,3 +165,6 @@ vim +PluginInstall +qall
 if [ "$2" == "re" ] ; then
   vim +PluginUpdate +qall
 fi
+
+# setup KEYWORDS
+cp $ENV/KEYWORDS $BASEPATH
