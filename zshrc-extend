@@ -86,7 +86,7 @@ source ~/env/enhancd/init.sh
 fzf-keyword-widget() {
   local selected num
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-  selected=( $( cat $HOME/env/KEYWORDS | fzf -m --height 60% --border --bind=tab:toggle | sed 's/^[a-z]* *: //') )
+  selected=( $( cat $HOME/env/KEYWORDS | grep "^[a-z]" | fzf -m --height 60% --border --bind=tab:toggle | sed 's/^[a-z]* *: //') )
   RBUFFER=$selected
   zle fzf-redraw-prompt
   zle end-of-line

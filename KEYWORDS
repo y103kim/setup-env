@@ -1,3 +1,4 @@
+# Git keywords
 gcpmd   : git commit -pm "DBGSW-
 gcpm    : git commit -pm "
 gcam    : git commit -as --amend
@@ -6,11 +7,17 @@ gchd    : git checkout -- .
 gpgh    : git push github HEAD:
 gpor    : git push origin HEAD:
 gpy     : git push y103 HEAD:
+
+# Source
 sv      : source ~/workspace/DI/venv/bin/activate
 sz      : source ~/.zshrc
+
+# Debug Insight
 din     : python -m dicore -t normal $D/
 disn    : python -m dicore -it normal $D/
 diin    : python -m dicore -st normal $D/
 dig     : python -m dicore -t glance $D/
+
+# Tmux
 tmn     : tmux new -s  
 tma     : tmux attach -t 
