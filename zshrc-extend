@@ -79,4 +79,7 @@ export DISPLAY=$(echo $SSH_CLIENT | awk '{ print $1}'):0.0
 source ~/env/fzf-tab/fzf-tab.zsh
 zstyle ':completion:*' format '-- %d --'
 
+# enhancd
+source ~/env/enhancd/init.sh
+
 source ~/.zshrc-local

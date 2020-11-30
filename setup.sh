@@ -149,6 +149,13 @@ sed -i 's/ctrl-space:toggle/tab:toggle/g' lib/-ftb-fzf
 sed -i 's/tab:down,//g' lib/-ftb-fzf
 popd
 
+# fzf-tab
+[ ! -d $BASEPATH/enhancd ] && https://github.com/b4b4r07/enhancd.git $BASEPATH/enhancd
+pushd $BASEPATH/enhancd
+git checkout .
+git pull origin master
+popd
+
 # VIM
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
