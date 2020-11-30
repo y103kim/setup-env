@@ -30,6 +30,7 @@ export PATH=$HOME/env/platform-tools:$PATH
 export GIT_EDITOR=vim
 export EDITOR=vim
 source ~/.zprezto/modules/autosuggestions/external/zsh-autosuggestions.zsh
+setopt no_beep
 
 # Default source
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

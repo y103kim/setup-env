@@ -36,6 +36,7 @@ set mouse=a
 set backspace=2
 set updatetime=200
 set colorcolumn=100
+set belloff=all
 
 "" tab settings
 set ts=2
