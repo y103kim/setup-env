@@ -7,6 +7,8 @@ gchd    : git checkout -- .
 gpgh    : git push github HEAD:
 gpor    : git push origin HEAD:
 gpy     : git push y103 HEAD:
+gri     : git rebase -i 
+grc     : git rebase --continue
 
 # Source
 sv      : source ~/workspace/DI/venv/bin/activate
