@@ -120,7 +120,7 @@ map <leader>ef :NERDTreeToggle<CR>
 
 " <leader>f setup
 " FIXME: map formatting function according to file format
-map <leader>fo <Nop>
+map <leader>fo :w<cr>:!yapf -i --style='{based_on_style:google,column_limit:100}' %<CR>:e!<CR>:redraw!<CR>
 
 " Fzf
 map <leader>fr :Rg <C-R>=expand("<cword>")<CR><CR>
