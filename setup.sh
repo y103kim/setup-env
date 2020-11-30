@@ -140,6 +140,15 @@ git pull origin master
 popd
 [ ! -f ~/.fzf.zsh ] && $BASEPATH/fzf/install
 
+# fzf-tab
+[ ! -d $BASEPATH/fzf-tab ] && git clone https://github.com/Aloxaf/fzf-tab.git $BASEPATH/fzf-tab
+pushd $BASEPATH/fzf-tab
+git checkout .
+git pull origin master
+sed -i 's/ctrl-space:toggle/tab:toggle/g' lib/-ftb-fzf
+sed -i 's/tab:down,//g' lib/-ftb-fzf
+popd
+
 # VIM
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim

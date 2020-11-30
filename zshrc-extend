@@ -74,4 +74,8 @@ export DISPLAY=$(echo $SSH_CLIENT | awk '{ print $1}'):0.0
 [ $HOSTNAME = "DESKTOP-4U36KIC" ] && export DISPLAY=$WSL_HOST:0.0
 [ $HOSTNAME = "LAPTOP-8KRMGL3F" ] && export DISPLAY=$WSL_HOST:10.0
 
+# fzf-tab
+source ~/env/fzf-tab/fzf-tab.zsh
+zstyle ':completion:*' format '-- %d --'
+
 source ~/.zshrc-local
