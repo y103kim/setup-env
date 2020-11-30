@@ -1,4 +1,5 @@
-gcpm    : git commit -pm "DBGSW-
+gcpmd   : git commit -pm "DBGSW-
+gcpm    : git commit -pm "
 gcam    : git commit -as --amend
 gcamne  : git commit -as --amend --no-edit
 gchd    : git checkout -- .
