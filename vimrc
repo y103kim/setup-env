@@ -100,11 +100,44 @@ map <leader>dw :%s/\s\+$//<cr>
 "" set function keys
 set nopaste
 set pastetoggle=<F4>
-map <F11> @q
+map <F9> @q
 map <F8> <esc><<esc><esc><esc>:w<cr>:make<cr><cr><cr><cr>
 map ,bu <esc><esc>:w<cr>:make<cr><cr><cr><cr>
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
+
+"" function key toggle
+set mouse=a
+function! ShowMouseMode()
+  if (&mouse == 'a')
+    echo "mouse-vim"
+  else
+    echo "mouse-xterm"
+  endif
+endfunction
+map <silent><F5> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
+imap <silent><F5> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
+
+let g:nu_state = 1
+function! NumberToggle()
+  if(g:nu_state == 0)
+    set number
+    set relativenumber
+    let g:nu_state = 1
+    execute "GitGutterEnable"
+  elseif(g:nu_state == 1)
+    set number
+    set norelativenumber
+    let g:nu_state = 2
+    execute "GitGutterEnable"
+  elseif(g:nu_state == 2)
+    set nonu
+    set norelativenumber
+    let g:nu_state = 0
+    execute "GitGutterDisable"
+  endif
+endfunc
+noremap <F3> :call NumberToggle()<CR>
 
 "" buffer setting
 map <C-L> :bnext<cr>
