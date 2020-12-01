@@ -37,6 +37,7 @@ set backspace=2
 set updatetime=200
 set colorcolumn=100
 set belloff=all
+set clipboard=
 
 "" tab settings
 set ts=2
