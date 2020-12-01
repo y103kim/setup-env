@@ -91,12 +91,22 @@ if [ "$1" == "as" ] ; then
     popd
   fi
 
-  if [ "$2" == "re" ] || [ ! -f $USR_BASE/rg/rg ] ; then
+  # ripgrep
+  if [ "$2" == "re" ] || [ ! -f $BASEPATH/ripgrep/rg ] ; then
     rm -rf $ARCHIVE/ripgrep*
     gh release download -R BurntSushi/ripgrep -p "*x86*linux*.tar.gz" -D $ARCHIVE
     RG_TAR=$(ls $ARCHIVE/ripgrep*)
     mkdir -p $BASEPATH/ripgrep
     tar xf $RG_TAR -C $BASEPATH/ripgrep --strip-components=1
+  fi
+
+  # hub
+  if [ "$2" == "re" ] || [ ! -f $BASEPATH/hub/hub ] ; then
+    rm -rf $ARCHIVE/hub*
+    gh release download -R github/hub -p "hub-linux-amd64*.tgz" -D $ARCHIVE
+    HUB_TAR=$(ls $ARCHIVE/hub*)
+    mkdir -p $BASEPATH/hub
+    tar xf $HUB_TAR -C $BASEPATH/hub --strip-components=1
   fi
 fi
 
