@@ -5,8 +5,11 @@ gcam    : git commit -as --amend
 gcamne  : git commit -as --amend --no-edit
 gchd    : git checkout -- .
 gpgh    : git push github HEAD:
+gpghrh  : git push github HEAD:refs/heads/
 gpor    : git push origin HEAD:
+gporrh  : git push origin HEAD:refs/heads/
 gpy     : git push y103 HEAD:
+gpyrh   : git push y103 HEAD:refs/heads/
 gri     : git rebase -i 
 grc     : git rebase --continue
 
