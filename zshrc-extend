@@ -82,6 +82,8 @@ zstyle ':completion:*' format '-- %d --'
 
 # enhancd
 source ~/env/enhancd/init.sh
+export ENHANCD_DISABLE_DOT=1
+export ENHANCD_DISABLE_HYPHEN=1
 
 # KEYWORDS
 fzf-keyword-widget() {
