@@ -146,7 +146,10 @@ read -r -d '' ZSH_SETUP << EOM
 if [ ! -d ${ZDOTDIR:-$HOME}/.zprezto ]; then
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 fi
-git --git-dir=${ZDOTDIR:-$HOME}/.zprezto/.git pull origin master
+pushd $HOME/.zprezto
+git checkout .
+git pull origin master
+popd
 cp ~/.zprezto/runcoms/zlogin ~/.zlogin
 cp ~/.zprezto/runcoms/zlogout ~/.zlogout
 cp ~/.zprezto/runcoms/zpreztorc ~/.zpreztorc
