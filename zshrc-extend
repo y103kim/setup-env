@@ -70,6 +70,15 @@ alias vimgd='vim $(git status --porcelain | awk "{print $2}")'
 alias cch="fc -rl 1 | fzf -m --height 60% --border --bind=tab:toggle | sed 's/^ *[0-9]* *//' | xclip"
 alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
+# Alias as function
+function ghpr {
+  git push y103 HEAD:refs/heads/DBGSW-$2
+  hub pull-request -f -h y103-kim:DBGSW-$2 -b Debug-Insight:$1 -m DBGSW-$2 -e -r "yunji-kim,sbeom-choi" -c
+}
+function vimgs() {
+  vim $(git log --name-only --format='' -1 $1 | tr '\n' ' ')
+}
+
 # Display setting
 HOSTNAME=$(hostname)
 export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
@@ -98,11 +107,5 @@ fzf-keyword-widget() {
 }
 zle     -N   fzf-keyword-widget
 bindkey '^q' fzf-keyword-widget
-
-# ghpr
-function ghpr {
-  git push y103 HEAD:refs/heads/DBGSW-$2
-  hub pull-request -f -h y103-kim:DBGSW-$2 -b Debug-Insight:$1 -m DBGSW-$2 -e -r "yunji-kim,sbeom-choi" -c
-}
 
 source ~/.zshrc-local
