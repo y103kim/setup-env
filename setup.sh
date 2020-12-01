@@ -37,6 +37,7 @@ if [ "$1" == "as" ] ; then
 
   # Libevent
   if [ "$2" == "re" ] || [ ! -f $USR_BASE/lib/libevent.la ] ; then
+    echo "==== Libevent reinstall ===="
     rm -rf $ARCHIVE/libevent*
     if [ "$PUB_GITHUB_HOST" == "" ]; then
       gh release download -R libevent/libevent -p "*.tar.gz" -D $ARCHIVE
@@ -57,6 +58,7 @@ if [ "$1" == "as" ] ; then
 
   # Ncurses
   if [ "$2" == "re" ] || [ ! -f $USR_BASE/lib/libncurses.a ] ; then
+    echo "==== ncurses reinstall ===="
     NCURSES_TAR=$ARCHIVE/ncurses-6.2.tar.gz
     NCURSES_URL=https://invisible-mirror.net/archives/ncurses/ncurses-6.2.tar.gz
     [ ! -f $NCURSES_TAR ] && wget -O $NCURSES_TAR $NCURSES_URL
@@ -71,6 +73,7 @@ if [ "$1" == "as" ] ; then
 
   # Tmux
   if [ "$2" == "re" ] || [ ! -f $USR_BASE/bin/tmux ] ; then
+    echo "==== tmux reinstall ===="
     rm -rf $ARCHIVE/tmux*
     if [ "$PUB_GITHUB_HOST" == "" ]; then
       gh release download -R tmux/tmux -p "*.tar.gz" -D $ARCHIVE
@@ -91,6 +94,7 @@ if [ "$1" == "as" ] ; then
 
   # Zsh
   if [ "$2" == "re" ] || [ ! -f $USR_BASE/bin/zsh ] ; then
+    echo "==== zsh reinstall ===="
     ZSH_URL="https://sourceforge.net/projects/zsh/files/zsh/5.8/zsh-5.8.tar.xz"
     ZSH_TAR=$ARCHIVE/zsh-5.8.tar.xz
     [ ! -f $ZSH_TAR ] && wget -O $ZSH_TAR $ZSH_URL
@@ -105,6 +109,7 @@ if [ "$1" == "as" ] ; then
 
   # ripgrep
   if [ "$2" == "re" ] || [ ! -f $BASEPATH/ripgrep/rg ] ; then
+    echo "==== ripgrep reinstall ===="
     rm -rf $ARCHIVE/ripgrep*
     if [ "$PUB_GITHUB_HOST" == "" ]; then
       gh release download -R BurntSushi/ripgrep -p "*x86*linux*.tar.gz" -D $ARCHIVE
@@ -120,6 +125,7 @@ if [ "$1" == "as" ] ; then
 
   # hub
   if [ "$2" == "re" ] || [ ! -f $BASEPATH/hub/bin/hub ] ; then
+    echo "==== hub reinstall ===="
     rm -rf $ARCHIVE/hub*
     if [ "$PUB_GITHUB_HOST" == "" ]; then
       gh release download -R github/hub -p "hub-linux-amd64*.tgz" -D $ARCHIVE
