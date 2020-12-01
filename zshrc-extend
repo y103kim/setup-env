@@ -98,4 +98,10 @@ fzf-keyword-widget() {
 zle     -N   fzf-keyword-widget
 bindkey '^q' fzf-keyword-widget
 
+# ghpr
+function ghpr {
+  git push y103 HEAD:refs/heads/DBGSW-$2
+  hub pull-request -f -h y103-kim:DBGSW-$2 -b Debug-Insight:$1 -m DBGSW-$2 -e -r "yunji-kim,sbeom-choi" -c
+}
+
 source ~/.zshrc-local
