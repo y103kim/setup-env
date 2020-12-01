@@ -14,6 +14,7 @@ gpy     : git push y103 HEAD:
 gpyrh   : git push y103 HEAD:refs/heads/
 gri     : git rebase -i 
 grc     : git rebase --continue
+gf      : git fetch --all --prune
 
 # Source
 sdi     : source ~/workspace/DI/venv/bin/activate
