@@ -116,4 +116,13 @@ fzf-keyword-widget() {
 zle     -N   fzf-keyword-widget
 bindkey '^e' fzf-keyword-widget
 
+# Remove tidious alias of prezto
+unalias cp
+unalias ln
+unalias mv
+unalias rm
+unalias cpi
+unalias lni
+unalias mvi
+unalias rmi
 source ~/.zshrc-local
