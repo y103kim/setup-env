@@ -100,12 +100,12 @@ fzf-keyword-widget() {
   local selected num
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
   selected=( $( cat $HOME/env/KEYWORDS | grep "^[a-z]" | fzf -m --height 60% --border --bind=tab:toggle | sed 's/^[a-z]* *: //') )
-  RBUFFER=$selected
+  BUFFER=$LBUFFER$selected$RBUFFER
   zle fzf-redraw-prompt
   zle end-of-line
   return $ret
 }
 zle     -N   fzf-keyword-widget
-bindkey '^q' fzf-keyword-widget
+bindkey '^u' fzf-keyword-widget
 
 source ~/.zshrc-local
