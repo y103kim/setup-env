@@ -68,6 +68,7 @@ load-nvmrc
 alias pyctags='ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags . $(python -c "import os, sys; print(\" \".join(\"{}\".format(d) for d in sys.path if os.path.isdir(d)))")'
 alias vimgd='vim $(git status --porcelain | awk "{print $2}")'
 alias cch="fc -rl 1 | fzf -m --height 60% --border --bind=tab:toggle | sed 's/^ *[0-9]* *//' | xclip"
+alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
 # Display setting
 HOSTNAME=$(hostname)
