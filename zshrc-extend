@@ -81,10 +81,12 @@ function vimgs() {
 function rgi() {
   INITIAL_QUERY=""
   RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
-  FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
+  result=$( FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
     fzf --bind "change:reload:$RG_PREFIX {q} || true" \
     --ansi --phony --query "$INITIAL_QUERY" \
-    --height=50% --layout=reverse
+    --height=50% --layout=reverse )
+  IFS=":" arr=($(echo $result))
+  vim +${arr[2]} ${arr[1]} -c "normal zz${arr[3]}l"
 }
 
 # Display setting
