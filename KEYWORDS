@@ -16,8 +16,8 @@ gri     : git rebase -i
 grc     : git rebase --continue
 
 # Source
-sv      : source ~/workspace/DI/venv/bin/activate
-sz      : source ~/.zshrc
+sdi     : source ~/workspace/DI/venv/bin/activate
+src     : source ~/.zshrc
 
 # Debug Insight
 din     : python -m dicore -t normal $D/
