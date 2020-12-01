@@ -119,7 +119,7 @@ if [ "$1" == "as" ] ; then
   fi
 
   # hub
-  if [ "$2" == "re" ] || [ ! -f $BASEPATH/hub/hub ] ; then
+  if [ "$2" == "re" ] || [ ! -f $BASEPATH/hub/bin/hub ] ; then
     rm -rf $ARCHIVE/hub*
     if [ "$PUB_GITHUB_HOST" == "" ]; then
       gh release download -R github/hub -p "hub-linux-amd64*.tgz" -D $ARCHIVE
