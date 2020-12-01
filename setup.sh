@@ -38,7 +38,13 @@ if [ "$1" == "as" ] ; then
   # Libevent
   if [ "$2" == "re" ] || [ ! -f $USR_BASE/lib/libevent.la ] ; then
     rm -rf $ARCHIVE/libevent*
-    gh release download -R libevent/libevent -p "*.tar.gz" -D $ARCHIVE
+    if [ "$PUB_GITHUB_HOST" == "" ]; then
+      gh release download -R libevent/libevent -p "*.tar.gz" -D $ARCHIVE
+    else
+      export GITHUB_HOST=$PUB_GITHUB_HOST
+      export GITHUB_TOKEN=$PUB_GITHUB_TOKEN
+      gh release download -R libevent/libevent -p "*.tar.gz" -D $ARCHIVE
+    fi
     LIBEVENT_TAR=$(ls $ARCHIVE/libevent*)
     mkdir -p $BASEPATH/libevent
     tar xf $LIBEVENT_TAR -C $BASEPATH/libevent --strip-components=1
@@ -66,7 +72,13 @@ if [ "$1" == "as" ] ; then
   # Tmux
   if [ "$2" == "re" ] || [ ! -f $USR_BASE/bin/tmux ] ; then
     rm -rf $ARCHIVE/tmux*
-    gh release download -R tmux/tmux -p "*.tar.gz" -D $ARCHIVE
+    if [ "$PUB_GITHUB_HOST" == "" ]; then
+      gh release download -R tmux/tmux -p "*.tar.gz" -D $ARCHIVE
+    else
+      export GITHUB_HOST=$PUB_GITHUB_HOST
+      export GITHUB_TOKEN=$PUB_GITHUB_TOKEN
+      gh release download -R tmux/tmux -p "*.tar.gz" -D $ARCHIVE
+    fi
     TMUX_TAR=$(ls $ARCHIVE/tmux*)
     mkdir -p $BASEPATH/tmux
     tar xf $TMUX_TAR -C $BASEPATH/tmux --strip-components=1
@@ -94,7 +106,13 @@ if [ "$1" == "as" ] ; then
   # ripgrep
   if [ "$2" == "re" ] || [ ! -f $BASEPATH/ripgrep/rg ] ; then
     rm -rf $ARCHIVE/ripgrep*
-    gh release download -R BurntSushi/ripgrep -p "*x86*linux*.tar.gz" -D $ARCHIVE
+    if [ "$PUB_GITHUB_HOST" == "" ]; then
+      gh release download -R BurntSushi/ripgrep -p "*x86*linux*.tar.gz" -D $ARCHIVE
+    else
+      export GITHUB_HOST=$PUB_GITHUB_HOST
+      export GITHUB_TOKEN=$PUB_GITHUB_TOKEN
+      gh release download -R BurntSushi/ripgrep -p "*x86*linux*.tar.gz" -D $ARCHIVE
+    fi
     RG_TAR=$(ls $ARCHIVE/ripgrep*)
     mkdir -p $BASEPATH/ripgrep
     tar xf $RG_TAR -C $BASEPATH/ripgrep --strip-components=1
@@ -103,7 +121,13 @@ if [ "$1" == "as" ] ; then
   # hub
   if [ "$2" == "re" ] || [ ! -f $BASEPATH/hub/hub ] ; then
     rm -rf $ARCHIVE/hub*
-    gh release download -R github/hub -p "hub-linux-amd64*.tgz" -D $ARCHIVE
+    if [ "$PUB_GITHUB_HOST" == "" ]; then
+      gh release download -R github/hub -p "hub-linux-amd64*.tgz" -D $ARCHIVE
+    else
+      export GITHUB_HOST=$PUB_GITHUB_HOST
+      export GITHUB_TOKEN=$PUB_GITHUB_TOKEN
+      gh release download -R github/hub -p "hub-linux-amd64*.tgz" -D $ARCHIVE
+    fi
     HUB_TAR=$(ls $ARCHIVE/hub*)
     mkdir -p $BASEPATH/hub
     tar xf $HUB_TAR -C $BASEPATH/hub --strip-components=1
