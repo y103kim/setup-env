@@ -106,6 +106,6 @@ fzf-keyword-widget() {
   return $ret
 }
 zle     -N   fzf-keyword-widget
-bindkey '^u' fzf-keyword-widget
+bindkey '^e' fzf-keyword-widget
 
 source ~/.zshrc-local
