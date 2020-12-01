@@ -1,6 +1,8 @@
 # Git keywords
 gcpmd   : git commit -pm "DBGSW-
 gcpm    : git commit -pm "
+gcpam   : git commit -p --amend
+gcpamne : git commit -p --amend --no-edit
 gcam    : git commit -as --amend
 gcamne  : git commit -as --amend --no-edit
 gchd    : git checkout -- .
