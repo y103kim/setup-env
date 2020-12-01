@@ -188,8 +188,8 @@ popd
 pushd $BASEPATH/fzf-tab
 git checkout .
 git pull origin master
-sed -i 's/ctrl-space:toggle/tab:toggle/g' lib/-ftb-fzf
-sed -i 's/tab:down,//g' lib/-ftb-fzf
+# sed -i 's/ctrl-space:toggle/tab:toggle/g' lib/-ftb-fzf
+# sed -i 's/tab:down,//g' lib/-ftb-fzf
 popd
 
 # enhancd
