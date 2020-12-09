@@ -154,6 +154,10 @@ if [ "$1" == "as" ] ; then
     mkdir -p $BASEPATH/nvim
     tar xf $NVIM_TAR -C $BASEPATH/nvim --strip-components=1
   fi
+
+  # vim-plug
+  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 fi
 
 #########################  Install pulgins ##########################
@@ -209,13 +213,11 @@ git pull origin master
 popd
 
 # VIM
-if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-fi
-cp $ENV/vimrc ~/.vimrc
-vim +PluginInstall +qall
+mkdir -p "${XDG_DATA_HOME:-$HOME/.config/nvim/}"
+cp $ENV/init.vim "${XDG_DATA_HOME:-$HOME/.config/nvim/init.vim}"
+nvim +PlugInstall +qall
 if [ "$2" == "re" ] ; then
-  vim +PluginUpdate +qall
+  nvim +PlugUpdate +qall
 fi
 
 # diff-so-fancy

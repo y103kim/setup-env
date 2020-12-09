@@ -1,26 +1,22 @@
-" set the runtime path to include Vundle and initialize
-set rtp+=$HOME/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'commentary.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'terryma/vim-expand-region'
-Plugin 'tomasiser/vim-code-dark'
-" Plugin 'fatih/vim-go'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'mg979/vim-visual-multi'
-Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plugin 'junegunn/fzf.vim'
-" Plugin 'francoiscabrol/ranger.vim'
-" Plugin 'terryma/vim-multiple-cursors'
-" Plugin 'easymotion/vim-easymotion'
-call vundle#end()
-filetype plugin indent on    " required
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.local/nvim/plugged')
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'terryma/vim-expand-region'
+Plug 'tomasiser/vim-code-dark'
+Plug 'fatih/vim-go'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'mg979/vim-visual-multi'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+call plug#end()
 
 "" default setting
 syntax on
@@ -186,16 +182,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>
 map <leader>ya :call system("xclip -i -selection clipboard", getreg("%"))<CR>
 map <leader>yf :call system("xclip -i -selection clipboard", expand("%:t"))<CR>
-
-" nnoremap <C-c> :call multiple_cursors#quit()<CR>
-" let g:multi_cursor_quit_keys='<Esc>,<C-c>'
-
-"" Easy motion setting
-" map s <Nop>
-" nmap ss <Plug>(easymotion-overwin-f2)
-" map sl <Plug>(easymotion-bd-jk)
-" nmap sl <Plug>(easymotion-overwin-line)
-" let g:EasyMotion_smartcase = 0
 
 "" Vim expand region setting
 map L <Plug>(expand_region_expand)
