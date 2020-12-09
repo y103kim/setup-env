@@ -142,8 +142,6 @@ map <C-h> :bNext<cr>
 map <leader>q :bp <BAR> bd #<CR>
 
 "" config
-map <leader>cv :e ~/.vimrc<cr>
-map <leader>cs :e ~/.screenrc<cr>
 map <leader>cb :e ~/.bashrc<cr>
 map <leader>cz :e ~/.zpreztorc<cr>
 map <leader>cr :source ~/.vimrc<cr>
