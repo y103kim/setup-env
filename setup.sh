@@ -138,6 +138,22 @@ if [ "$1" == "as" ] ; then
     mkdir -p $BASEPATH/hub
     tar xf $HUB_TAR -C $BASEPATH/hub --strip-components=1
   fi
+
+  # neovim
+  if [ "$2" == "re" ] || [ ! -f $BASEPATH/nvim/bin/nvim ] ; then
+    echo "==== nvim reinstall ===="
+    rm -rf $ARCHIVE/nvim-linux64.tar.gz
+    if [ "$PUB_GITHUB_HOST" == "" ]; then
+      gh release download -R neovim/neovim -p nvim-linux64.tar.gz -D $ARCHIVE
+    else
+      export GITHUB_HOST=$PUB_GITHUB_HOST
+      export GITHUB_TOKEN=$PUB_GITHUB_TOKEN
+      gh release download -R neovim/neovim -p nvim-linux64.tar.gz -D $ARCHIVE
+    fi
+    NVIM_TAR=$ARCHIVE/nvim-linux64.tar.gz
+    mkdir -p $BASEPATH/nvim
+    tar xf $NVIM_TAR -C $BASEPATH/nvim --strip-components=1
+  fi
 fi
 
 #########################  Install pulgins ##########################
