@@ -17,14 +17,33 @@ if [ "$1" == "as" ] ; then
   NODE_VERSION="v14.5.0"
   GO_VERSION=$(curl -s https://golang.org/dl/ | grep -m 1 'class="download downloadBox"' | grep -Poh "\\d+\\.\\d+\\.\\d+")
 
+  # Openssl
+  if [ "$2" == "re" ] || [ ! -f $USR_BASE/bin/openssl ] ; then
+    echo "==== openssl reinstall ===="
+    OPENSSL_TAR=$ARCHIVE/openssl-1.1.1i.tar.gz
+    if [ ! -f $OPENSSL_TAR ]; then
+      wget https://www.openssl.org/source/openssl-1.1.1i.tar.gz -P $ARCHIVE
+    fi
+    mkdir -p $BASEPATH/openssl
+    tar xf $OPENSSL_TAR -C $BASEPATH/openssl --strip-components=1
+    pushd $BASEPATH/openssl
+    ./Configure --prefix="$USR_BASE" linux-x86_64
+    make -j
+    make install
+    popd
+  fi
+
   # Python
   if [ "$2" == "re" ] || [ ! -f $USR_BASE/python/bin/python ] ; then
-    wget https://www.python.org/ftp/python/3.9.1/Python-3.9.1.tgz -P $ARCHIVE
+    echo "==== python 3.9.1 install ===="
     PYTHON_TAR=$ARCHIVE/Python-3.9.1.tgz
+    if [ ! -f $PYTHON_TAR ]; then
+      wget https://www.python.org/ftp/python/3.9.1/Python-3.9.1.tgz -P $ARCHIVE
+    fi
     mkdir -p $BASEPATH/python
     tar xf $PYTHON_TAR -C $BASEPATH/python --strip-components=1
     pushd $BASEPATH/python
-    ./configure --prefix="$USR_BASE"
+    CFLAGS="-I$HOME/env/usr/include" LDFLAGS="-Wl,-rpath=$MY_LIB -L$MY_LIB" ./configure --prefix="$USR_BASE"
     make -j
     make install
     popd
