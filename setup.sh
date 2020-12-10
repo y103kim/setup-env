@@ -224,15 +224,18 @@ popd
 mkdir -p "${XDG_DATA_HOME:-$HOME/.config/nvim/}"
 cp $ENV/init.vim "${XDG_DATA_HOME:-$HOME/.config/nvim/init.vim}"
 nvim +PlugInstall +qall
-if [ "$2" == "re" ] ; then
+if [ "$1" == "as" ] ; then
   nvim +PlugUpdate +qall
 fi
 
 # COC
-export NODE_TLS_REJECT_UNAUTHORIZED=0
-cp $ENV/coc-settings.json ~/.config/nvim/
-nvim +"CocInstall coc-pyright coc-tsserver coc-prettier coc-json" +qall
-unset NODE_TLS_REJECT_UNAUTHORIZED
+if [ "$1" == "as" ] ; then
+  export NODE_TLS_REJECT_UNAUTHORIZED=0
+  cp $ENV/coc-settings.json ~/.config/nvim/
+  nvim +"CocInstall -sync coc-pyright coc-tsserver coc-prettier coc-json" +qall
+  unset NODE_TLS_REJECT_UNAUTHORIZED
+fi
+nvim +CocUpdateSync +qall
 
 # diff-so-fancy
 [ ! -d $BASEPATH/diff-so-fancy ] && git clone https://github.com/so-fancy/diff-so-fancy.git $BASEPATH/diff-so-fancy
