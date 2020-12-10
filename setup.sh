@@ -30,6 +30,7 @@ if [ "$1" == "as" ] ; then
     popd
     ln -sf $USR_BASE/bin/python3 $USR_BASE/bin/python
     ln -sf $USR_BASE/bin/pip3 $USR_BASE/bin/pip
+    $USR_BASE/bin/python3 -m pip install yapf
   fi
 
   # Nodejs
