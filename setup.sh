@@ -17,6 +17,21 @@ if [ "$1" == "as" ] ; then
   NODE_VERSION="v14.5.0"
   GO_VERSION=$(curl -s https://golang.org/dl/ | grep -m 1 'class="download downloadBox"' | grep -Poh "\\d+\\.\\d+\\.\\d+")
 
+  # Python
+  if [ "$2" == "re" ] || [ ! -f $USR_BASE/python/bin/python ] ; then
+    wget https://www.python.org/ftp/python/3.9.1/Python-3.9.1.tgz -P $ARCHIVE
+    PYTHON_TAR=$ARCHIVE/Python-3.9.1.tgz
+    mkdir -p $BASEPATH/python
+    tar xf $PYTHON_TAR -C $BASEPATH/python --strip-components=1
+    pushd $BASEPATH/python
+    ./configure --prefix="$USR_BASE"
+    make -j
+    make install
+    popd
+    ln -sf $USR_BASE/bin/python3 $USR_BASE/bin/python
+    ln -sf $USR_BASE/bin/pip3 $USR_BASE/bin/pip
+  fi
+
   # Nodejs
   NVM_DIR="$BASEPATH/nvm"
   mkdir -p $NVM_DIR
