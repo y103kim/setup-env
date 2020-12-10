@@ -242,8 +242,8 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> L <Plug>(coc-range-select)
-xmap <silent> L <Plug>(coc-range-select)
+" nmap <silent> L <Plug>(coc-range-select)
+" xmap <silent> L <Plug>(coc-range-select)
 
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
