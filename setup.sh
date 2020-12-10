@@ -228,6 +228,12 @@ if [ "$2" == "re" ] ; then
   nvim +PlugUpdate +qall
 fi
 
+# COC
+export NODE_TLS_REJECT_UNAUTHORIZED=0
+cp $ENV/coc-settings.json ~/.config/nvim/
+nvim +"CocInstall coc-pyright coc-tsserver coc-prettier coc-json" +qall
+unset NODE_TLS_REJECT_UNAUTHORIZED
+
 # diff-so-fancy
 [ ! -d $BASEPATH/diff-so-fancy ] && git clone https://github.com/so-fancy/diff-so-fancy.git $BASEPATH/diff-so-fancy
 pushd $BASEPATH/diff-so-fancy
