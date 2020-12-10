@@ -25,7 +25,8 @@ if [ "$1" == "as" ] ; then
   fi
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-  nvm install node
+  nvm install lts/fermium
+  nvm alias default lts/fermium
 
   # Golang
   mkdir -p $BASEPATH/go
