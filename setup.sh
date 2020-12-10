@@ -212,6 +212,13 @@ git pull origin master
 # sed -i 's/tab:down,//g' lib/-ftb-fzf
 popd
 
+# enhancd
+[ ! -d $BASEPATH/enhancd ] && git clone https://github.com/b4b4r07/enhancd.git $BASEPATH/enhancd
+pushd $BASEPATH/enhancd
+git checkout .
+git pull origin master
+popd
+
 # VIM
 mkdir -p "${XDG_DATA_HOME:-$HOME/.config/nvim/}"
 cp $ENV/init.vim "${XDG_DATA_HOME:-$HOME/.config/nvim/init.vim}"
