@@ -143,9 +143,10 @@ map <C-h> :bNext<cr>
 map <leader>q :bp <BAR> bd #<CR>
 
 "" config
-map <leader>cb :e ~/.bashrc<cr>
-map <leader>cz :e ~/.zpreztorc<cr>
-map <leader>cr :source ~/.vimrc<cr>
+map <leader>cv :e ~/.config/nvim/init.vim<cr>
+map <leader>cz :e ~/.zshrc<cr>
+map <leader>cl :e ~/.zshrc-local<cr>
+map <leader>cr :source ~/.config/nvim/init.vim<cr>
 
 "" NerdTree setup
 map <leader>ef :NERDTreeToggle<CR>
