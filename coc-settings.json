@@ -3,7 +3,6 @@
   "python.analysis.typeCheckingMode": "off",
   "python.formatting.provider": "yapf",
   "coc.preferences.formatOnSaveFiletypes": [
-    "python",
     "ts",
     "tsx",
     "json",
@@ -13,4 +12,3 @@
     "markdown"
   ]
 }
-

@@ -172,6 +172,8 @@ map <leader>fb :Buffers <CR>
 map <leader>ft :Tags <C-R>=expand("<cword>")<CR><CR>
 cnoreabbrev rg Rg
 
+nmap <leader>fo call CocAction("format")<CR>
+
 "" Slect, Motion, Copy ===========================================================================
 " Xclip copy
 vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>
@@ -254,4 +256,4 @@ nmap <silent> gr <Plug>(coc-references)
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
+au BufWritePost *.py call CocAction("format")
