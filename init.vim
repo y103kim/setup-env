@@ -193,19 +193,8 @@ map s <Nop>
 nmap s <Plug>(easymotion-overwin-f2)
 let g:EasyMotion_smartcase = 0
 
-let g:easymotion#is_active = 0
-function! EasyMotionCoc() abort
-  if EasyMotion#is_active()
-    let g:easymotion#is_active = 1
-    silent! CocDisable
-  else
-    if g:easymotion#is_active == 1
-      let g:easymotion#is_active = 0
-      silent! CocEnable
-    endif
-  endif
-endfunction
-autocmd TextChanged,CursorMoved * call EasyMotionCoc()
+autocmd User EasyMotionPromptBegin silent! CocDisable
+autocmd User EasyMotionPromptEnd silent! CocEnable
 
 "" color scheme, indent theme ===================================================================
 colorscheme codedark
