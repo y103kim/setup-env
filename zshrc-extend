@@ -72,7 +72,7 @@ function rgi() {
   [ -z $result ] && return
   files=$(echo $result | egrep -o "^[^:]*" | tr "\n" " ")
   IFS=":" arr=($(echo $result | head -1))
-  zsh -c "vim $files +${arr[2]} -c 'normal zz'"
+  zsh -c "nvim $files +${arr[2]} -c 'normal zz'"
 }
 
 # Display setting
