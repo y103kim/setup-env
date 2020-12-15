@@ -182,7 +182,7 @@ vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>
 map <leader>ya :call system("xclip -i -selection clipboard", getreg("%"))<CR>
 map <leader>yf :call system("xclip -i -selection clipboard", expand("%:t"))<CR>
 
-" Vim expand region setting 
+" Vim expand region setting
 map L <Plug>(expand_region_expand)
 map H <Plug>(expand_region_shrink)
 
@@ -191,6 +191,20 @@ map s <Nop>
 nmap s <Plug>(easymotion-s)
 nmap f <Plug>(easymotion-overwin-f2)
 let g:EasyMotion_smartcase = 0
+
+let g:easymotion#is_active = 0
+function! EasyMotionCoc() abort
+  if EasyMotion#is_active()
+    let g:easymotion#is_active = 1
+    silent! CocDisable
+  else
+    if g:easymotion#is_active == 1
+      let g:easymotion#is_active = 0
+      silent! CocEnable
+    endif
+  endif
+endfunction
+autocmd TextChanged,CursorMoved * call EasyMotionCoc()
 
 "" color scheme, indent theme ===================================================================
 colorscheme codedark
