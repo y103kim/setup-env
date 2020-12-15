@@ -19,6 +19,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mhinz/vim-startify'
 Plug 'rhysd/git-messenger.vim'
+Plug 'wellle/targets.vim'
 call plug#end()
 
 "" default setting
