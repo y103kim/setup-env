@@ -187,9 +187,10 @@ map L <Plug>(expand_region_expand)
 map H <Plug>(expand_region_shrink)
 
 "" Easy motion setting
+map f <Nop>
+nmap f <Plug>(easymotion-s)
 map s <Nop>
-nmap s <Plug>(easymotion-s)
-nmap f <Plug>(easymotion-overwin-f2)
+nmap s <Plug>(easymotion-overwin-f2)
 let g:EasyMotion_smartcase = 0
 
 let g:easymotion#is_active = 0
