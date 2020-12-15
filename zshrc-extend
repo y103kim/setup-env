@@ -45,7 +45,6 @@ export NVM_DIR="$HOME/env/nvm"
 
 # Alias
 alias pyctags='ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags . $(python -c "import os, sys; print(\" \".join(\"{}\".format(d) for d in sys.path if os.path.isdir(d)))")'
-alias vimgd='nvim $(git diff --name-only | tr "\n" " ")'
 alias cch="fc -rl 1 | fzf -m --layout=reverse --height 60% --border | sed 's/^ *[0-9]* *//' | xclip"
 alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 alias vim='nvim'
@@ -58,7 +57,10 @@ function ghpr {
   hub pull-request -f -h y103-kim:DBGSW-$2 -b Debug-Insight:$1 -m DBGSW-$2 -e -r "yunji-kim,sbeom-choi" -c
 }
 function vimgs() {
-  vim $(git log --name-only --format='' -1 $1 | tr '\n' ' ')
+  vim $(git log --name-only --format='' -1 | awk '{print $1}')
+}
+function vimgd() {
+  vim $(git diff --name-only | awk '{print $1}')
 }
 function rgi() {
   INITIAL_QUERY=""
