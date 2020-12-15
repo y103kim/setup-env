@@ -20,7 +20,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mhinz/vim-startify'
 Plug 'rhysd/git-messenger.vim'
 Plug 'wellle/targets.vim'
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'easymotion/vim-easymotion'
 call plug#end()
 
@@ -157,9 +156,6 @@ map <leader>ef :CocCommand explorer<CR>
 "" Git (g) =======================================================================================
 autocmd BufWritePost * GitGutter
 nmap <Leader>gm <Plug>(git-messenger)
-
-"" WhichKey ======================================================================================
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " Fzf ============================================================================================
 map <leader>fr :Rg <C-R>=expand("<cword>")<CR><CR>
