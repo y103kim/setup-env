@@ -21,6 +21,7 @@ Plug 'mhinz/vim-startify'
 Plug 'rhysd/git-messenger.vim'
 Plug 'wellle/targets.vim'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 "" default setting ===============================================================================
@@ -184,6 +185,12 @@ map <leader>yf :call system("xclip -i -selection clipboard", expand("%:t"))<CR>
 " Vim expand region setting 
 map L <Plug>(expand_region_expand)
 map H <Plug>(expand_region_shrink)
+
+"" Easy motion setting
+map s <Nop>
+nmap s <Plug>(easymotion-s)
+nmap f <Plug>(easymotion-overwin-f2)
+let g:EasyMotion_smartcase = 0
 
 "" color scheme, indent theme ===================================================================
 colorscheme codedark
