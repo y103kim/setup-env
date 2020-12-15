@@ -20,9 +20,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mhinz/vim-startify'
 Plug 'rhysd/git-messenger.vim'
 Plug 'wellle/targets.vim'
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 call plug#end()
 
-"" default setting
+"" default setting ===============================================================================
 syntax on
 set ai
 set ci
@@ -38,8 +39,10 @@ set updatetime=200
 set colorcolumn=100
 set belloff=all
 set clipboard=
+set tw=100
+set updatetime=100
 
-"" tab settings
+"" Indent settings ===============================================================================
 set ts=2
 set sw=2
 set sts=2
@@ -93,12 +96,7 @@ function! SummarizeTabs()
   endtry
 endfunction
 
-"" Trailing whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-map <leader>dw :%s/\s\+$//<cr>
-
-"" set function keys
+"" set function keys =============================================================================
 set nopaste
 set pastetoggle=<F4>
 map <F9> @q
@@ -107,7 +105,7 @@ map ,bu <esc><esc>:w<cr>:make<cr><cr><cr><cr>
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
-"" function key toggle
+"" mouse key toggle
 set mouse=a
 function! ShowMouseMode()
   if (&mouse == 'a')
@@ -119,6 +117,7 @@ endfunction
 map <silent><F5> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
 imap <silent><F5> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
 
+"" number key toggle
 let g:nu_state = 1
 function! NumberToggle()
   if(g:nu_state == 0)
@@ -140,25 +139,28 @@ function! NumberToggle()
 endfunc
 noremap <F3> :call NumberToggle()<CR>
 
-"" buffer setting
+"" buffer setting ================================================================================
 map <C-L> :bnext<cr>
 map <C-h> :bNext<cr>
 map <leader>q :bp <BAR> bd #<CR>
 
-"" config
+"" config (c) ====================================================================================
 map <leader>cv :e ~/.config/nvim/init.vim<cr>
 map <leader>cz :e ~/.zshrc<cr>
 map <leader>cl :e ~/.zshrc-local<cr>
 map <leader>cr :source ~/.config/nvim/init.vim<cr>
 
-"" NerdTree setup
-map <leader>ef :NERDTreeToggle<CR>
+"" execution (e) =================================================================================
+map <leader>ef :CocCommand explorer<CR>
 
-" <leader>f setup
-" FIXME: map formatting function according to file format
-map <leader>fo :w<cr>:!yapf -i --style='{based_on_style:google,column_limit:100}' %<CR>:e!<CR>:redraw!<CR>
+"" Git (g) =======================================================================================
+autocmd BufWritePost * GitGutter
+nmap <Leader>gm <Plug>(git-messenger)
 
-" Fzf
+"" WhichKey ======================================================================================
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
+" Fzf ============================================================================================
 map <leader>fr :Rg <C-R>=expand("<cword>")<CR><CR>
 silent! !git rev-parse --is-inside-work-tree 1>/dev/null 2>&1
 if v:shell_error == 0
@@ -173,43 +175,40 @@ map <leader>fb :Buffers <CR>
 map <leader>ft :Tags <C-R>=expand("<cword>")<CR><CR>
 cnoreabbrev rg Rg
 
-"" Airline setup
-" set laststatus=2
-" set term=xterm-256color
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='codedark'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-
-"" xclip
+"" Slect, Motion, Copy ===========================================================================
+" Xclip copy
 vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>
 map <leader>ya :call system("xclip -i -selection clipboard", getreg("%"))<CR>
 map <leader>yf :call system("xclip -i -selection clipboard", expand("%:t"))<CR>
 
-"" Vim expand region setting
+" Vim expand region setting 
 map L <Plug>(expand_region_expand)
 map H <Plug>(expand_region_shrink)
 
-"" GitGutter
-set updatetime=100
-autocmd BufWritePost * GitGutter
-
-"" color scheme
-" colorscheme wombat256dave
+"" color scheme, indent theme ===================================================================
 colorscheme codedark
-
-"" vim-indent-guide
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd  ctermbg=235
 hi IndentGuidesEven ctermbg=236
+
+" airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='codedark'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 "" hls color
 set hls
 hi Search cterm=NONE ctermfg=black ctermbg=yellow
 map <leader>/ :let @/ = ""<cr>
 
-"" COC setup
+"" trailing white space
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+map <leader>dw :%s/\s\+$//<cr>
+
+"" COC setup ====================================================================================
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -243,11 +242,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-" nmap <silent> L <Plug>(coc-range-select)
-" xmap <silent> L <Plug>(coc-range-select)
 
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
