@@ -17,6 +17,7 @@ Plug 'mg979/vim-visual-multi'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 "" default setting
