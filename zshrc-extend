@@ -29,8 +29,8 @@ export PATH=$HOME/env/hub/bin:$PATH
 export PATH=$HOME/env/usr/bin:$PATH
 export PATH=$HOME/env/nvim/bin:$PATH
 export PATH=$HOME/env/platform-tools:$PATH
-export GIT_EDITOR=vim
-export EDITOR=vim
+export GIT_EDITOR=nvim
+export EDITOR=nvim
 source ~/.zprezto/modules/autosuggestions/external/zsh-autosuggestions.zsh
 setopt no_beep
 
