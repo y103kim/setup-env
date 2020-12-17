@@ -34,7 +34,7 @@ if [ "$1" == "as" ] ; then
   fi
 
   # Python
-  if [ "$2" == "re" ] || [ ! -f $USR_BASE/python/bin/python ] ; then
+  if [ "$2" == "re" ] || [ ! -f $USR_BASE/bin/python ] ; then
     echo "==== python 3.9.1 install ===="
     PYTHON_TAR=$ARCHIVE/Python-3.9.1.tgz
     if [ ! -f $PYTHON_TAR ]; then
