@@ -21,6 +21,7 @@ Plug 'mhinz/vim-startify'
 Plug 'rhysd/git-messenger.vim'
 Plug 'wellle/targets.vim'
 Plug 'justinmk/vim-sneak'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 "" default setting ===============================================================================
