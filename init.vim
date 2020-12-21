@@ -286,7 +286,7 @@ nmap <silent> gr <Plug>(coc-references)
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-au BufWritePost *.py call CocAction("format")
+au BufWritePost *.py call CocActionAsync("format")
 
 "" Cscope setup ==================================================================================
 if has("cscope")
