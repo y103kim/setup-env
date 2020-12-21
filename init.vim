@@ -24,6 +24,39 @@ Plug 'justinmk/vim-sneak'
 Plug 'sheerun/vim-polyglot'
 call plug#end()
 
+"" SmartHome setting =============================================================================
+nmap <silent><Home> :call SmartHome("n")<CR>
+nmap <silent><End> :call SmartEnd("n")<CR>
+imap <silent><Home> <C-r>=SmartHome("i")<CR>
+imap <silent><End> <C-r>=SmartEnd("i")<CR>
+vmap <silent><Home> <Esc>:call SmartHome("v")<CR>
+vmap <silent><End> <Esc>:call SmartEnd("v")<CR>
+
+function SmartHome(mode)
+  let curcol = col(".")
+  "gravitate towards beginning for wrapped lines
+  if curcol &gt; indent(".") + 2
+    call cursor(0, curcol - 1)
+  endif
+  if curcol == 1 || curcol &gt; indent(".") + 1
+    if &wrap
+      normal g^
+    else
+      normal ^
+    endif
+  else
+    if &wrap
+      normal g0
+    else
+      normal 0
+    endif
+  endif
+  if a:mode == "v"
+    normal msgv`s
+  endif
+  return ""
+endfunction
+
 "" default setting ===============================================================================
 syntax on
 set ai
