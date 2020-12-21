@@ -29,5 +29,5 @@ bind -n M-j select-pane -D  # move down
 bind -n M-k select-pane -U  # move up
 bind -n M-l select-pane -R  # move right
 
-bind < swap-window -t -1 \; next
-bind > swap-window -t +1 \; prev
+# bind < swap-window -t -1 \; next
+# bind > swap-window -t +1 \; prev
