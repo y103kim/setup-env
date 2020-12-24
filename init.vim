@@ -22,6 +22,7 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'wellle/targets.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'sheerun/vim-polyglot'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 "" SmartHome setting =============================================================================
@@ -311,3 +312,11 @@ if has("cscope")
   nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
   nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 endif
+
+"" tmux-vim-navigator ============================================================================
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-K> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-L> :TmuxNavigateRight<cr>
+nnoremap <silent> <M-;> :TmuxNavigatePrevious<cr>
