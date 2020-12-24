@@ -264,9 +264,9 @@ if [ "$1" == "as" ] ; then
 fi
 
 # COC
+cp $ENV/coc-settings.json ~/.config/nvim/
 if [ "$1" == "as" ] ; then
   export NODE_TLS_REJECT_UNAUTHORIZED=0
-  cp $ENV/coc-settings.json ~/.config/nvim/
   nvim +"CocInstall -sync coc-pyright coc-tsserver coc-prettier coc-json coc-explorer" +qall
   unset NODE_TLS_REJECT_UNAUTHORIZED
 fi
