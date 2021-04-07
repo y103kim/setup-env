@@ -50,6 +50,8 @@ alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(bold bl
 alias vim='nvim'
 alias vi='nvim'
 alias vimdiff='nvim -d'
+alias todo='grit tree 1'
+alias todoa='grit add -p'
 
 # Alias as function
 function ghpr {
