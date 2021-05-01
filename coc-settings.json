@@ -2,6 +2,13 @@
   "http.proxyStrictSSL": false,
   "python.analysis.typeCheckingMode": "off",
   "python.formatting.provider": "yapf",
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
+    }
+  },
   "coc.preferences.formatOnSaveFiletypes": [
     "ts",
     "tsx",
@@ -9,6 +16,7 @@
     "js",
     "jsx",
     "css",
+    "go",
     "markdown"
   ]
 }

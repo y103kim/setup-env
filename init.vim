@@ -11,7 +11,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
 Plug 'tomasiser/vim-code-dark'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'mg979/vim-visual-multi'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
