@@ -267,7 +267,7 @@ fi
 cp $ENV/coc-settings.json ~/.config/nvim/
 if [ "$1" == "as" ] ; then
   export NODE_TLS_REJECT_UNAUTHORIZED=0
-  nvim +"CocInstall -sync coc-pyright coc-tsserver coc-prettier coc-json coc-explorer" +qall
+  nvim +"CocInstall -sync coc-pyright coc-tsserver coc-prettier coc-json coc-explorer coc-go" +qall
   unset NODE_TLS_REJECT_UNAUTHORIZED
 fi
 nvim +CocUpdateSync +qall
