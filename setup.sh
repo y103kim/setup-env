@@ -295,3 +295,4 @@ popd
 # setup miscs
 cp $ENV/KEYWORDS $BASEPATH
 cp $ENV/ccc $USR_BASE/bin
+cp $ENV/dksh $USR_BASE/bin
