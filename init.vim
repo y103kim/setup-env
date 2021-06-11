@@ -209,7 +209,7 @@ nmap <leader>fo call CocAction("format")<CR>
 "" Slect, Motion, Copy ===========================================================================
 " Xclip copy
 vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>
-map <leader>ya :call system("xclip -i -selection clipboard", getreg("%"))<CR>
+map <leader>ya :call system("xclip -i -selection clipboard", expand("%:p"))<CR>
 map <leader>yf :call system("xclip -i -selection clipboard", expand("%:t"))<CR>
 
 " Vim expand region setting
