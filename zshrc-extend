@@ -82,9 +82,9 @@ function rgi() {
 # Display setting
 HOSTNAME=$(hostname)
 export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
-export DISPLAY=$(echo $SSH_CLIENT | awk '{ print $1}'):0.0
 [ $HOSTNAME = "DESKTOP-4U36KIC" ] && export DISPLAY=$WSL_HOST:0.0
 [ $HOSTNAME = "LAPTOP-8KRMGL3F" ] && export DISPLAY=$WSL_HOST:10.0
+[ $HOSTNAME = "DoocongDesktop" ] && export DISPLAY=$WSL_HOST:0.0
 
 # fzf-tab
 source ~/env/fzf-tab/fzf-tab.zsh
