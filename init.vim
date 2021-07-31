@@ -28,6 +28,7 @@ Plug 'wellle/targets.vim'
 
 " Formatting
 Plug 'tpope/vim-commentary'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " Navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
