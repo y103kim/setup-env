@@ -2,26 +2,37 @@
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/nvim/plugged')
-Plug 'scrooloose/nerdtree'
+" Theme & Color
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'terryma/vim-expand-region'
 Plug 'tomasiser/vim-code-dark'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'junegunn/goyo.vim'
+
+" Language
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'sheerun/vim-polyglot'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'rhysd/git-messenger.vim'
+Plug 'airblade/vim-gitgutter'
+
+" Motion & Selection
+Plug 'justinmk/vim-sneak'
+Plug 'terryma/vim-expand-region'
+Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
+Plug 'wellle/targets.vim'
+
+" Formatting
+Plug 'tpope/vim-commentary'
+
+" Navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mhinz/vim-startify'
-Plug 'rhysd/git-messenger.vim'
-Plug 'wellle/targets.vim'
-Plug 'justinmk/vim-sneak'
-Plug 'sheerun/vim-polyglot'
 Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
