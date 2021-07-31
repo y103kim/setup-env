@@ -22,7 +22,6 @@ Plug 'airblade/vim-gitgutter'
 
 " Motion & Selection
 Plug 'justinmk/vim-sneak'
-Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
 Plug 'wellle/targets.vim'
@@ -226,10 +225,6 @@ nmap <leader>fo call CocAction("format")<CR>
 vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>
 map <leader>ya :call system("xclip -i -selection clipboard", expand("%:p"))<CR>
 map <leader>yf :call system("xclip -i -selection clipboard", expand("%:t"))<CR>
-
-" Vim expand region setting
-map L <Plug>(expand_region_expand)
-map H <Plug>(expand_region_shrink)
 
 "" Easy motion setting
 map f <Nop>
