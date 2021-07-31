@@ -13,6 +13,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -382,3 +383,26 @@ if has('persistent_undo')
     let &undodir = s:undoDir
     set undofile
 endif
+
+" treesitter ====================================================================================
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "L",
+      node_incremental = "L",
+      scope_incremental = "gL",
+      node_decremental = "H",
+    },
+  },
+}
+EOF
+
+" I don't know reason why but there is error on get_fold_indic
+" parser.has_parser has always false value
+" set foldexpr=nvim_treesitter#foldexpr()
+" set foldmethod=expr
