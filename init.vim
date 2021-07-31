@@ -35,6 +35,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'mbbill/undotree'
 call plug#end()
 
 "" SmartHome setting =============================================================================
@@ -145,6 +146,7 @@ set nopaste
 set pastetoggle=<F4>
 map <F9> @q
 map <F8> <esc><<esc><esc><esc>:w<cr>:make<cr><cr><cr><cr>
+map <F7> :UndotreeToggle<CR>
 map ,bu <esc><esc>:w<cr>:make<cr><cr><cr><cr>
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
@@ -368,3 +370,15 @@ nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <M-;> :TmuxNavigatePrevious<cr>
+
+"" tmux-vim-navigator ============================================================================
+if has('persistent_undo')
+    let s:vimDir = '$HOME/env/nvim'
+    let s:undoDir = expand(s:vimDir . '/undodir')
+
+    call system('mkdir ' . s:vimDir)
+    call system('mkdir ' . s:undoDir)
+
+    let &undodir = s:undoDir
+    set undofile
+endif
