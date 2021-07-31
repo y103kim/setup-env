@@ -371,7 +371,7 @@ nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <M-;> :TmuxNavigatePrevious<cr>
 
-"" tmux-vim-navigator ============================================================================
+"" persistent undo ===============================================================================
 if has('persistent_undo')
     let s:vimDir = '$HOME/env/nvim'
     let s:undoDir = expand(s:vimDir . '/undodir')
