@@ -142,6 +142,7 @@
   "disabledProfileSources": ["Windows.Terminal.Azure"],
   "profiles": {
     "defaults": {
+      "bellStyle": "none",
       "cursorShape": "filledBox",
       "font": {
         "face": "Cascadia Code PL",
@@ -157,7 +158,7 @@
         "startingDirectory": "//wsl$/Ubuntu-20.04/home/doocong"
       },
       {
-        "commandline": "ssh doocong@doocong.com",
+        "commandline": "ssh -Y doocong@doocong.com",
         "guid": "{abd66fea-5fd4-4a96-a18a-a98efa220cf8}",
         "hidden": false,
         "name": "NUC",
