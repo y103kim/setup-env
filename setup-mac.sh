@@ -132,3 +132,5 @@ popd
 cp $ENV/KEYWORDS $BASEPATH
 cp $ENV/ccc $USR_BASE/bin
 cp $ENV/dksh $USR_BASE/bin
+mkdir -p $HOME/Library/KeyBindings
+cp DefaultKeyBinding.dict $HOME/Library/KeyBindings
