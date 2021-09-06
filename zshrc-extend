@@ -22,6 +22,7 @@ fi
 if [ ! -z $WSL_DISTRO_NAME ]; then
   export PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 fi
+which sw_vers > /dev/null && export PATH=$PATH:/usr/local/Homebrew/bin
 export PATH=$HOME/env/node/bin:$PATH
 export PATH=$HOME/env/go/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
