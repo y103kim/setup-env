@@ -78,6 +78,9 @@ git pull origin master
 popd
 
 # VIM
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
 mkdir -p "${XDG_DATA_HOME:-$HOME/.config/nvim/}"
 cp $ENV/init.vim "${XDG_DATA_HOME:-$HOME/.config/nvim/init.vim}"
 nvim +PlugInstall +qall
