@@ -74,4 +74,6 @@ which is completely different.
     "^c"       = "copy:";
     "^v"       = "paste:";
     "^a"       = "selectAll:";
+    "^z"       = "undo:";
+    "^@z"       = "redo:";
 }
