@@ -19,6 +19,7 @@ BASEPATH=$HOME/env
 USR_BASE=$BASEPATH/usr
 MY_LIB=$BASEPATH/usr/lib
 ARCHIVE=$HOME/env/archive
+mkdir -p $USR_BASE/bin
 
 #########################  Install pulgins ##########################
 # zsh
@@ -38,7 +39,7 @@ cp ~/.zprezto/runcoms/zprofile ~/.zprofile
 cp ~/.zprezto/runcoms/zshrc ~/.zshrc
 EOM
 zsh -c "$ZSH_SETUP"
-sed -i 's/sorin/powerlevel10k/g' ~/.zpreztorc
+sed -i "" "s/sorin/powerlevel10k/g" ~/.zpreztorc
 cat $ENV/zshrc-extend > ~/.zshrc
 cp $ENV/p10k.zsh ~/.p10k.zsh
 
