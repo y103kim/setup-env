@@ -21,6 +21,17 @@ MY_LIB=$BASEPATH/usr/lib
 ARCHIVE=$HOME/env/archive
 mkdir -p $USR_BASE/bin
 
+# nvm
+NVM_DIR="$BASEPATH/nvm"
+mkdir -p $NVM_DIR
+if [ ! -f $NVM_DIR/nvm.sh ]; then
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+fi
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm install lts/fermium
+nvm alias default lts/fermium
+
 #########################  Install pulgins ##########################
 # zsh
 read -r -d '' ZSH_SETUP << EOM
