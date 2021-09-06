@@ -4,6 +4,10 @@ brew install python
 brew install neovim
 brew install gh
 brew install hub
+brew install coreutils
+
+git config --global pull.rebase true
+git config --global pull.ff only
 
 # Go to Home
 ENV=$(dirname $(realpath ${BASH_SOURCE[0]}))
