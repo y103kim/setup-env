@@ -1,5 +1,3 @@
-#!/bin/bash
-
 if [ ! -f $HOME/.linuxbrew/bin/brew ] ; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
@@ -25,6 +23,17 @@ fi
 SETUP_ENV=$PWD
 BASEPATH=$HOME/env
 USR_BIN=$(brew --prefix)/bin
+
+#########################  only for mac ##########################
+if [[ $OSTYPE == 'darwin'* ]]; then
+  echo 'It is macOS'
+  mkdir -p $HOME/Library/KeyBindings
+  cp DefaultKeyBinding.dict $HOME/Library/KeyBindings
+
+  # VIM
+  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+fi
 
 #########################  Install pulgins ##########################
 # zsh
