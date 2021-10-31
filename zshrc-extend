@@ -1,0 +1,115 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+# BASIC
+if [ ! -z $WSL_DISTRO_NAME ]; then
+  export PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+fi
+# PATH for homebrew
+eval "$(/home/doocong/.linuxbrew/bin/brew shellenv)"
+
+export GIT_EDITOR=nvim
+export EDITOR=nvim
+source ~/.zprezto/modules/autosuggestions/external/zsh-autosuggestions.zsh
+setopt no_beep
+
+# Default source
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[ -f ~/env/_ripgrep ] && source ~/env/_ripgrep
+
+export NVM_DIR="$HOME/env/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Alias
+alias pyctags='ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags . $(python -c "import os, sys; print(\" \".join(\"{}\".format(d) for d in sys.path if os.path.isdir(d)))")'
+alias cch="fc -rl 1 | fzf -m --layout=reverse --height 60% --border | sed 's/^ *[0-9]* *//' | xclip"
+alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
+alias gla="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias vim='nvim'
+alias vi='nvim'
+alias vimdiff='nvim -d'
+alias todo='grit tree 1'
+alias todoa='grit add -p'
+
+# Alias as function
+function ghpr {
+  git push y103 HEAD:refs/heads/DBGSW-$2
+  hub pull-request -f -h y103-kim:DBGSW-$2 -b Debug-Insight:$1 -m DBGSW-$2 -e -r "yunji-kim" -c
+}
+function vimgs() {
+  vim $(git log --name-only --format='' -1 | awk '{print $1}')
+}
+function vimgd() {
+  vim $(git diff --name-only | awk '{print $1}')
+}
+function rgi() {
+  INITIAL_QUERY=""
+  RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+  result=$( FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
+    fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+    --ansi --phony --query "$INITIAL_QUERY" \
+    --height=50% --layout=reverse -m --history $HOME/env/rgi_history)
+  [ -z $result ] && return
+  files=$(echo $result | egrep -o "^[^:]*" | tr "\n" " ")
+  IFS=":" arr=($(echo $result | head -1))
+  zsh -c "nvim $files +${arr[2]} -c 'normal zz'"
+}
+
+# Display setting
+HOSTNAME=$(hostname)
+export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
+[ $HOSTNAME = "DESKTOP-4U36KIC" ] && export DISPLAY=$WSL_HOST:0.0
+[ $HOSTNAME = "LAPTOP-8KRMGL3F" ] && export DISPLAY=$WSL_HOST:10.0
+[ $HOSTNAME = "DoocongDesktop" ] && export DISPLAY=$WSL_HOST:0.0
+
+# fzf-tab
+source ~/env/fzf-tab/fzf-tab.zsh
+zstyle ':completion:*' format '-- %d --'
+
+# enhancd
+source ~/env/enhancd/init.sh
+export ENHANCD_DISABLE_DOT=1
+export ENHANCD_DISABLE_HYPHEN=1
+
+# KEYWORDS
+fzf-keyword-widget() {
+  local selected num
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+  selected=( $( cat $HOME/env/KEYWORDS | grep "^[a-z]" | fzf -m --height 60% --border --bind=tab:toggle | sed 's/^[a-z]* *: //') )
+  BUFFER=$LBUFFER$selected$RBUFFER
+  zle fzf-redraw-prompt
+  zle end-of-line
+  return $ret
+}
+zle     -N   fzf-keyword-widget
+bindkey '^e' fzf-keyword-widget
+
+# Remove tidious alias of prezto
+unalias cp
+unalias ln
+unalias mv
+unalias rm
+unalias cpi
+unalias lni
+unalias mvi
+unalias rmi
+source ~/.zshrc-local
