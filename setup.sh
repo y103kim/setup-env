@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ ! -f $HOME/.linuxbrew/bin/brew ] ; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
@@ -70,7 +72,7 @@ popd
 cat $SETUP_ENV/tmux-extend >> ~/.tmux.conf.local
 
 # ripgrep
-cp $ENV/_ripgrep $BASEPATH
+cp $SETUP_ENV/_ripgrep $BASEPATH
 
 # fzf-tab
 [ ! -d $BASEPATH/fzf-tab ] && git clone https://github.com/Aloxaf/fzf-tab.git $BASEPATH/fzf-tab

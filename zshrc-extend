@@ -35,9 +35,9 @@ setopt no_beep
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/env/_ripgrep ] && source ~/env/_ripgrep
 
-export NVM_DIR="$HOME/env/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
+[ -s "/home/doocong/.linuxbrew/opt/nvm/nvm.sh" ] && . "/home/doocong/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/home/doocong/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/home/doocong/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Alias
 alias pyctags='ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags . $(python -c "import os, sys; print(\" \".join(\"{}\".format(d) for d in sys.path if os.path.isdir(d)))")'
