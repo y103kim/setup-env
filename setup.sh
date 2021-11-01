@@ -131,3 +131,9 @@ popd
 cp $SETUP_ENV/KEYWORDS $BASEPATH
 cp $SETUP_ENV/ccc $USR_BIN
 cp $SETUP_ENV/dksh $USR_BIN
+
+# chsh
+if [ "$1" == "as" ] ; then
+  touch ~/.zshrc-local
+  sudo chsh -s $(which zsh) doocong
+fi
