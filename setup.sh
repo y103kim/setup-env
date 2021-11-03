@@ -18,6 +18,11 @@ if [ "$1" == "as" ] ; then
   brew install go
   brew install nvm
   brew install fzf
+  brew install binutils
+  brew install gcc
+  brew install openjdk
+  brew install scala
+  brew install sbt
 
   $(brew --prefix)/opt/fzf/install
 fi

@@ -23,7 +23,9 @@ if [ ! -z $WSL_DISTRO_NAME ]; then
   export PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 fi
 # PATH for homebrew
-eval "$(/home/doocong/.linuxbrew/bin/brew shellenv)"
+eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+BREW_ROOT=$(brew --prefix)
+export PATH=$BREW_ROOT/opt/openjdk@11/bin:$PATH
 
 export GIT_EDITOR=nvim
 export EDITOR=nvim
@@ -36,8 +38,8 @@ setopt no_beep
 [ -f ~/env/_ripgrep ] && source ~/env/_ripgrep
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "/home/doocong/.linuxbrew/opt/nvm/nvm.sh" ] && . "/home/doocong/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/home/doocong/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/home/doocong/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "$BREW_ROOT/opt/nvm/nvm.sh" ] && . "$BREW_ROOT/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "$BREW_ROOT/opt/nvm/etc/bash_completion.d/nvm" ] && . "$BREW_ROOT/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Alias
 alias pyctags='ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags . $(python -c "import os, sys; print(\" \".join(\"{}\".format(d) for d in sys.path if os.path.isdir(d)))")'
