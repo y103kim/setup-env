@@ -49,7 +49,8 @@ setopt EXTENDED_GLOB
 if [ ! -d ${ZDOTDIR:-$HOME}/.zprezto ]; then
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 fi
-END)
+END
+)
 zsh -c "$ZSH_SETUP"
 
 pushd $HOME/.zprezto
@@ -107,7 +108,7 @@ fi
 cp $SETUP_ENV/coc-settings.json ~/.config/nvim/
 if [ "$1" == "as" ] ; then
   export NODE_TLS_REJECT_UNAUTHORIZED=0
-  nvim +"CocInstall -sync coc-pyright coc-tsserver coc-prettier coc-json coc-explorer coc-go" +qall
+  nvim +"CocInstall -sync coc-pyright coc-tsserver coc-prettier coc-json coc-explorer coc-go coc-metals" +qall
   unset NODE_TLS_REJECT_UNAUTHORIZED
 fi
 nvim +CocUpdateSync +qall
