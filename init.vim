@@ -335,8 +335,8 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-" scala worksheet
-nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
+"" coc-metall setup ==============================================================================
+au BufRead,BufNewFile *.sbt,*.sc set filetype=scala
 
 "" Cscope setup ==================================================================================
 if has("cscope")
