@@ -1,11 +1,13 @@
 #!/bin/bash
 
-if [ ! -f $HOME/.linuxbrew/bin/brew ] ; then
+if [[ "$(which brew)" == "" ]] && [ ! -f $HOME/.linuxbrew/bin/brew ] ; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 if [ "$1" == "as" ] ; then
-  eval "$(/home/doocong/.linuxbrew/bin/brew shellenv)"
+  if [[ "$(which brew)" == "" ]]; then
+    eval "$(/home/doocong/.linuxbrew/bin/brew shellenv)"
+  fi
 
   brew install zsh
   brew install tcl-tk
