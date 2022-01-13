@@ -222,9 +222,15 @@ nmap <leader>fo call CocAction("format")<CR>
 
 "" Slect, Motion, Copy ===========================================================================
 " Xclip copy
-vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>
-map <leader>ya :call system("xclip -i -selection clipboard", expand("%:p"))<CR>
-map <leader>yf :call system("xclip -i -selection clipboard", expand("%:t"))<CR>
+if has('mac')
+  vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
+  map <leader>ya :call system("pbcopy", expand("%:p"))<CR>
+  map <leader>yf :call system("pbcopy", expand("%:t"))<CR>
+else
+  vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>
+  map <leader>ya :call system("xclip -i -selection clipboard", expand("%:p"))<CR>
+  map <leader>yf :call system("xclip -i -selection clipboard", expand("%:t"))<CR>
+endif
 
 "" Easy motion setting
 map f <Nop>

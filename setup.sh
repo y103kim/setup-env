@@ -67,7 +67,11 @@ cp ~/.zprezto/runcoms/zpreztorc ~/.zpreztorc
 cp ~/.zprezto/runcoms/zshenv ~/.zshenv
 cp ~/.zprezto/runcoms/zprofile ~/.zprofile
 cp ~/.zprezto/runcoms/zshrc ~/.zshrc
-sed -i 's/sorin/powerlevel10k/g' ~/.zpreztorc
+if [[ $OSTYPE == 'darwin'* ]]; then
+  sed -i '' 's/sorin/powerlevel10k/g' ~/.zpreztorc
+else
+  sed -i 's/sorin/powerlevel10k/g' ~/.zpreztorc
+fi
 cat $SETUP_ENV/zshrc-extend > ~/.zshrc
 cp $SETUP_ENV/p10k.zsh ~/.p10k.zsh
 
