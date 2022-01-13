@@ -5,8 +5,10 @@ if [[ "$(which brew)" == "" ]] && [ ! -f $HOME/.linuxbrew/bin/brew ] ; then
 fi
 
 if [ "$1" == "as" ] ; then
-  if [[ "$(which brew)" == "" ]]; then
-    eval "$(/home/doocong/.linuxbrew/bin/brew shellenv)"
+  if [[ "$(which brew)" == "" ]] && [ -f $HOME/.linuxbrew/bin/brew ]; then
+    eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+  elif [[ "$(which brew)" == "" ]] && [ -f /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
   fi
 
   brew install zsh
