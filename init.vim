@@ -316,6 +316,8 @@ endfunction
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 au BufWritePost *.py call CocActionAsync("format")
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 " Rename symbol
 nmap <leader>rn <Plug>(coc-rename)
