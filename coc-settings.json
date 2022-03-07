@@ -2,6 +2,9 @@
   "http.proxyStrictSSL": false,
   "python.analysis.typeCheckingMode": "off",
   "python.formatting.provider": "yapf",
+  "sql.lintOnOpen": false,
+  "sql.lintOnSave": false,
+  "sql.lintOnChange": false,
   "languageserver": {
     "golang": {
       "command": "~/go/bin/gopls",
