@@ -23,9 +23,11 @@ if [ ! -z $WSL_DISTRO_NAME ]; then
   export PATH=/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 fi
 # PATH for homebrew
-if [[ "$(which brew)" == "" ]] && [ -f $HOME/.linuxbrew/bin/brew ]; then
+which brew > /dev/null
+CHECK_BREW="$?"
+if [[ "$CHECK_BREW" == "1" ]] && [ -f $HOME/.linuxbrew/bin/brew ]; then
   eval "$($HOME/.linuxbrew/bin/brew shellenv)"
-elif [[ "$(which brew)" == "" ]] && [ -f /usr/local/bin/brew ]; then
+elif [[ "$CHECK_BREW" == "1" ]] && [ -f /usr/local/bin/brew ]; then
   eval "$(/usr/local/bin/brew shellenv)"
 fi
 BREW_ROOT=$(brew --prefix)
