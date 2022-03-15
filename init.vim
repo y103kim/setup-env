@@ -33,6 +33,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-peekaboo'
 Plug 'mhinz/vim-startify'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mbbill/undotree'
