@@ -5,6 +5,17 @@
   "sql.lintOnOpen": false,
   "sql.lintOnSave": false,
   "sql.lintOnChange": false,
+  "sql.formatOptions": {
+    "language": "spark",
+    "uppercase": true,
+    "linesBetweenQueries": 2,
+    "indentStyle": "tabularRight",
+    "multilineLists": "expressionWidth",
+    "expressionWidth": 50,
+    "aliasAs": "select",
+    "tabulateAlias": true,
+    "newlineBeforeOpenParen": true
+  },
   "languageserver": {
     "golang": {
       "command": "~/go/bin/gopls",
