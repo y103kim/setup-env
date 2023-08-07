@@ -27,6 +27,8 @@ which brew > /dev/null
 CHECK_BREW="$?"
 if [[ "$CHECK_BREW" == "1" ]] && [ -f $HOME/.linuxbrew/bin/brew ]; then
   eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+elif [[ "$(which brew)" == "" ]] && [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 elif [[ "$CHECK_BREW" == "1" ]] && [ -f /usr/local/bin/brew ]; then
   eval "$(/usr/local/bin/brew shellenv)"
 fi

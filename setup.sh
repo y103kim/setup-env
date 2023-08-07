@@ -7,6 +7,8 @@ fi
 if [ "$1" == "as" ] ; then
   if [[ "$(which brew)" == "" ]] && [ -f $HOME/.linuxbrew/bin/brew ]; then
     eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+  elif [[ "$(which brew)" == "" ]] && [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   elif [[ "$(which brew)" == "" ]] && [ -f /usr/local/bin/brew ]; then
     eval "$(/usr/local/bin/brew shellenv)"
   fi
