@@ -99,6 +99,8 @@ zstyle ':completion:*' format '-- %d --'
 source ~/env/enhancd/init.sh
 export ENHANCD_DISABLE_DOT=1
 export ENHANCD_DISABLE_HYPHEN=1
+export ENHANCD_ENABLE_HYPHEN=false
+export ENHANCD_ENABLE_DOUBLE_DOT=false
 
 # KEYWORDS
 fzf-keyword-widget() {
