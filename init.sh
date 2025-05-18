@@ -15,10 +15,5 @@ for DIR in "${BREW_PATHS[@]}"; do
 done
 
 # install essential packages
-brew install nushell
-brew install neovim
-brew install ripgrep
-brew install zellij
-brew install nvm
-brew install fzf
+brew install nushell neovim ripgrep zellij nvm fzf starship
 
