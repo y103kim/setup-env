@@ -1,9 +1,0 @@
-#!/bin/bash
-cat -n <<< $(docker ps --format '{{.Names}}')
-echo -n "Press number to execute: "
-read NUM
-echo
-let NUM=$NUM-1
-ARR=($(docker ps --format '{{.ID}}'))
-echo "docker exec -it ${ARR[$NUM]} bash"
-docker exec -it ${ARR[$NUM]} bash
