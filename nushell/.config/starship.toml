@@ -98,6 +98,9 @@ format = '[[ $symbol $branch ](bold fg:color_fg1 bg:color_aqua)]($style)'
 [git_status]
 style = "bg:color_aqua"
 format = '[[($all_status$ahead_behind )](bold fg:color_fg1 bg:color_aqua)]($style)'
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
 
 [nodejs]
 symbol = ""
