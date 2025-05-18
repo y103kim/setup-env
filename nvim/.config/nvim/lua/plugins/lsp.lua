@@ -36,6 +36,10 @@ return {
           },
         },
       },
+      keymap = {
+        preset = 'default',
+        ['<Tab>'] = { 'accept' },
+      }
     },
   }
 }
