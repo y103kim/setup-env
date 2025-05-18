@@ -1,6 +1,7 @@
 # BASIC CONFIGS
 use std/util "path add"
 $env.config.buffer_editor = "nvim"
+git config --global core.editor "nvim"
 
 # PATH
 let brew_paths = [
