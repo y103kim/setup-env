@@ -2,13 +2,32 @@ use std/util "path add"
 
 # BASIC CONFIGS
 $env.config.buffer_editor = "nvim"
-git config --global core.editor "nvim"
 $env.config.history = {
   file_format: sqlite
   max_size: 1_000_000
   sync_on_enter: true
   isolation: true
 }
+$env.LC_CTYPE = "en_US.UTF-8"
+$env.LC_ALL = "en_US.UTF-8"
+$env.LESSCHARSET = "utf-8"
+
+# GIT
+git config --global core.editor "nvim"
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RF"
+git config --global interactive.diffFilter "diff-so-fancy --patch"
+git config --global color.ui true
+git config --global color.diff-highlight.oldNormal    "red bold"
+git config --global color.diff-highlight.oldHighlight "red bold 52"
+git config --global color.diff-highlight.newNormal    "green bold"
+git config --global color.diff-highlight.newHighlight "green bold 22"
+git config --global color.diff.meta       "11"
+git config --global color.diff.frag       "magenta bold"
+git config --global color.diff.func       "146 bold"
+git config --global color.diff.commit     "yellow bold"
+git config --global color.diff.old        "red bold"
+git config --global color.diff.new        "green bold"
+git config --global color.diff.whitespace "red reverse"
 
 # PATH
 let brew_paths = [
@@ -46,3 +65,4 @@ $env.config.keybindings = [
 # STARSHIP
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+

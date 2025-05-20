@@ -18,7 +18,7 @@ for DIR in "${BREW_PATHS[@]}"; do
 done
 
 # install essential packages
-brew install nushell neovim ripgrep zellij nvm fzf starship ripgreg fd
+brew install nushell neovim ripgrep zellij nvm fzf starship ripgreg fd diff-so-fancy
 
 # copy keymap for macOS
 if [[ $OSTYPE == 'darwin'* ]]; then
