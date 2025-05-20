@@ -12,9 +12,11 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.expandtab = true
+vim.o.undofile = true
 
 vim.opt.termguicolors = true
 
+-- basic key maps
 vim.keymap.set("n", "<C-h>", "<cmd>BufferLineCyclePrev<cr>")
 vim.keymap.set("n", "<C-l>", "<cmd>BufferLineCycleNext<cr>")
 vim.keymap.set('n', '<C-j>', '<C-w>w')
@@ -25,3 +27,7 @@ vim.keymap.set("n", "<leader>cv", ":FzfLua files search_paths=~/.config/nvim/lua
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+
+-- goto
+vim.keymap.set("n", "<leader>gi", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>gu", vim.cmd.UndotreeToggle)

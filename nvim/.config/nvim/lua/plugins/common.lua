@@ -1,5 +1,6 @@
 return {
   { "folke/which-key.nvim" },
+  { "mbbill/undotree" },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
