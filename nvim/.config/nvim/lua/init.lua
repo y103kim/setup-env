@@ -17,3 +17,11 @@ vim.opt.termguicolors = true
 
 vim.keymap.set("n", "<C-h>", "<cmd>BufferLineCyclePrev<cr>")
 vim.keymap.set("n", "<C-l>", "<cmd>BufferLineCycleNext<cr>")
+vim.keymap.set('n', '<C-j>', '<C-w>w')
+vim.keymap.set('n', '<C-k>', '<C-w>W')
+vim.keymap.set("n", "<leader>cv", ":FzfLua files search_paths=~/.config/nvim/lua fd_opt='-e lua' query=lua<CR>")
+
+-- set system clipboard
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
