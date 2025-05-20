@@ -29,6 +29,26 @@ git config --global color.diff.old        "red bold"
 git config --global color.diff.new        "green bold"
 git config --global color.diff.whitespace "red reverse"
 
+# Edit files modified in the last commit
+def vimgs [] {
+    let modified_files = (git log --name-only --format='' -1 | lines | where ($it | str trim | str length) > 0)
+    if ($modified_files | is-empty) {
+        echo "No files found in the last commit"
+        return
+    }
+    nvim ...$modified_files
+}
+
+# Edit files that are currently modified according to git diff
+def vimgd [] {
+    let modified_files = (git diff --name-only | lines | where ($it | str trim | str length) > 0)
+    if ($modified_files | is-empty) {
+        echo "No modified files found"
+        return
+    }
+    nvim ...$modified_files
+}
+
 # PATH
 let brew_paths = [
   $"($env.HOME)/.linuxbrew/bin"
