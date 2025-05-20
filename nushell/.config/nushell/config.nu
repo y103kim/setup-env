@@ -1,5 +1,5 @@
 use std/util "path add"
-use ./local.nu
+source ./local.nu
 
 # BASIC CONFIGS
 $env.config.buffer_editor = "nvim"
