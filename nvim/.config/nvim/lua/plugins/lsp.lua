@@ -41,5 +41,6 @@ return {
         ['<Tab>'] = { 'accept' },
       }
     },
+    version = "*",
   }
 }
