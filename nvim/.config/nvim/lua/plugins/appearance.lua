@@ -18,6 +18,8 @@ return {
       }
       vim.cmd.colorscheme "vscode"
       vim.api.nvim_set_hl(0, "BufferLineFill", {  fg = 'NONE', bg = "#111111" })
+      vim.api.nvim_set_hl(0, "GitBlameColor", { fg = "#444444" })
+      vim.api.nvim_set_hl(0, "FlashBackdrop", { fg = "#777777" })
     end
   },
   {
@@ -34,11 +36,49 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    ---@module "ibl"
-    ---@type ibl.config
     opts = {},
     config = function ()
       require("ibl").setup()
+    end
+  },
+  {
+    "rcarriga/nvim-notify",
+    lazy = false,
+    opts = {
+      timeout = 2000,
+      on_open = function(win)
+        vim.api.nvim_win_set_config(win, { focusable = false })
+      end,
+      render = "default",
+      stages = "fade_in_slide_out",
+    },
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    config = function ()
+      require("noice").setup({
+        lsp = {
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+          },
+        },
+        presets = {
+          command_palette = true,
+          long_message_to_split = true,
+          inc_rename = false,
+          lsp_doc_border = false,
+        },
+      })
     end
   },
 }
