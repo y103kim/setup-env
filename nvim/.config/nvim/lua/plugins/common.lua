@@ -20,12 +20,16 @@ return {
   { "folke/which-key.nvim" },
   { "mbbill/undotree" },
   { 'ojroques/nvim-bufdel' },
+  { "mg979/vim-visual-multi" },
   {
-    "jake-stewart/multicursor.nvim",
-    branch = "1.0",
-    config = function()
-      local mc = require("multicursor-nvim")
-      mc.setup()
-    end
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    },
+    lazy = false, -- neo-tree will lazily load itself
+    opts = { },
   }
 }

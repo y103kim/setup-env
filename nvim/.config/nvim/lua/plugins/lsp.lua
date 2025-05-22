@@ -3,7 +3,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     dependencies = "nushell/tree-sitter-nu",
-    config = function ()
+    config = function()
       require("nvim-treesitter.configs").setup({
         modules = {},
         ensure_installed = { "c", "lua", "vim", "vimdoc", "nu", "python", "javascript", "html", "typescript", "nu" },
@@ -83,8 +83,9 @@ return {
       cmp.setup({
         mapping = cmp.mapping.preset.insert({
           ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-          ['<Tab>'] = cmp.mapping.select_prev_item(cmp_select),
+          ['<S-Tab>'] = cmp.mapping.select_next_item(cmp_select),
           ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+          ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
           ['<C-y>'] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
@@ -108,8 +109,8 @@ return {
         sources = cmp.config.sources({
           { name = 'path' }
         }, {
-            { name = 'cmdline' }
-          }),
+          { name = 'cmdline' }
+        }),
         matching = { disallow_symbol_nonprefix_matching = false }
       })
 
@@ -126,4 +127,3 @@ return {
     end
   },
 }
-
