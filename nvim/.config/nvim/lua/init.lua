@@ -29,6 +29,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 -- goto
 vim.keymap.set("n", "<leader>gi", vim.diagnostic.open_float)
 vim.keymap.set("n", "<leader>gu", vim.cmd.UndotreeToggle)
+vim.keymap.set('n', '<leader>ga', '<cmd>ClaudeCode<CR>', { desc = 'Toggle Claude Code' })
 
 -- find
 vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua git_files<cr>")
