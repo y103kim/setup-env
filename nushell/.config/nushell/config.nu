@@ -11,6 +11,7 @@ $env.config.history = {
 }
 $env.LC_CTYPE = "en_US.UTF-8"
 $env.LC_ALL = "en_US.UTF-8"
+$env.LANG = "en_US.UTF-8"
 $env.LESSCHARSET = "utf-8"
 
 # GIT
@@ -86,4 +87,17 @@ $env.config.keybindings = [
 # STARSHIP
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+
+# FNM
+fnm env --shell bash
+    | lines
+    | str replace 'export ' ''
+    | str replace -a '"' ''
+    | split column '='
+    | rename name value
+    | where name != "FNM_ARCH" and name != "PATH"
+    | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value }
+    | load-env
+
+path add $"($env.FNM_MULTISHELL_PATH)/bin"
 
