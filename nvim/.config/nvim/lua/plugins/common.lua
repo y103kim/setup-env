@@ -26,10 +26,6 @@ return {
     config = function()
       local mc = require("multicursor-nvim")
       mc.setup()
-
-      local set = vim.keymap.set
-
-      -- Add or skip cursor above/below the main cursor.
     end
   }
 }

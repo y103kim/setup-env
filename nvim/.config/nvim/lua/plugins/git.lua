@@ -1,4 +1,5 @@
 return {
+  { "tpope/vim-fugitive" },
   {
     'f-person/git-blame.nvim',
     event = "VeryLazy",
@@ -56,11 +57,4 @@ return {
       }
     end
   },
-  {
-    "tpope/vim-fugitive",
-    config = function()
-      vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Git Status" })
-    end
-  },
-
 }

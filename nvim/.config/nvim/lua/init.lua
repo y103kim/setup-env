@@ -36,3 +36,6 @@ vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua git_files<cr>")
 vim.keymap.set("n", "<leader>fF", "<cmd>FzfLua files<cr>")
 vim.keymap.set("n", "<leader>fr", "<cmd>FzfLua live_grep<cr>")
 vim.keymap.set("n", "<leader>fR", "<cmd>FzfLua grep_project<cr>")
+
+-- git keymaps (from git.lua)
+vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Git Status" })
