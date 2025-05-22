@@ -30,6 +30,21 @@ return {
       "MunifTanjim/nui.nvim",
     },
     lazy = false, -- neo-tree will lazily load itself
-    opts = { },
+    opts = {},
+  },
+  {
+    "echasnovski/mini.ai",
+    event = "VeryLazy",
+    config = function(_, opts)
+      require("mini.ai").setup(opts)
+    end,
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+        require("nvim-surround").setup({})
+    end
   }
 }
