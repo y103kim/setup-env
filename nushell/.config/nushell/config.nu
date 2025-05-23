@@ -1,7 +1,14 @@
 use std/util "path add"
 source ./local.nu
 
-# BASIC CONFIGS
+# Env Variables
+$env.LC_CTYPE = "en_US.UTF-8"
+$env.LC_ALL = "en_US.UTF-8"
+$env.LANG = "en_US.UTF-8"
+$env.LESSCHARSET = "utf-8"
+
+# CONFIGS
+$env.config.show_banner = false
 $env.config.buffer_editor = "nvim"
 $env.config.history = {
   file_format: sqlite
@@ -9,10 +16,18 @@ $env.config.history = {
   sync_on_enter: true
   isolation: true
 }
-$env.LC_CTYPE = "en_US.UTF-8"
-$env.LC_ALL = "en_US.UTF-8"
-$env.LANG = "en_US.UTF-8"
-$env.LESSCHARSET = "utf-8"
+$env.config.completions = {
+  case_sensitive: false
+  quick: true
+  partial: true
+  algorithm: "prefix"
+  external: {
+    enable: true
+    max_results: 100
+    completer: null
+  }
+}
+$env.config.edit_mode = "vi"
 
 # GIT
 git config --global core.editor "nvim"
@@ -70,20 +85,6 @@ alias vim = nvim
 alias vi = nvim
 alias tmux = zellij
 
-# FUNCTION ALIAS
-$env.config.keybindings = [
-  {
-    name: reload_config
-    modifier: Alt_Shift
-    keycode: char_r
-    mode: [emacs vi_normal vi_insert]
-    event: {
-      send: executehostcommand,
-      cmd: $"clear;source '($nu.env-path)';source '($nu.config-path)';print 'Config reloaded.\n'"
-    }
-  }
-]
-
 # STARSHIP
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
@@ -101,3 +102,89 @@ fnm env --shell bash
 
 path add $"($env.FNM_MULTISHELL_PATH)/bin"
 
+# Menus
+$env.config.menus = [
+]
+
+# Keybindings
+$env.config.keybindings = [
+  {
+    name: reload_config
+    modifier: Alt_Shift
+    keycode: char_r
+    mode: [emacs vi_normal vi_insert]
+    event: {
+      send: executehostcommand,
+      cmd: $"clear;source '($nu.env-path)';source '($nu.config-path)';print 'Config reloaded.\n'"
+    }
+  }
+  {
+    name: fuzzy_history
+    modifier: control
+    keycode: char_r
+    mode: [emacs, vi_normal, vi_insert]
+    event: [
+      {
+        send: ExecuteHostCommand
+        cmd: "commandline edit --insert (
+        history
+        | where exit_status == 0
+        | get command
+        | uniq
+        | reverse
+        | str join (char -i 0)
+        | fzf --scheme=history --read0 --layout=reverse --height=40% -q (commandline)
+        | decode utf-8
+        | str trim
+        )"
+      }
+    ]
+  }
+  {
+    name: fuzzy_filefind
+    modifier: control
+    keycode: char_t
+    mode: [emacs, vi_normal, vi_insert]
+    event: [
+      {
+        send: ExecuteHostCommand
+        cmd: "
+        let isEmpty = (commandline | str trim | str length) == 0
+        let endsWithSpace = commandline | str ends-with ' '
+        if ($isEmpty or $endsWithSpace) {
+          commandline edit --insert (fzf --height=40% --layout=reverse | decode utf-8 | str trim)
+        } else {
+          let last = (commandline | split words | last)
+          commandline edit --replace ([
+            (commandline | split words | drop | str join ' ')
+            (fzf --height=40% --layout=reverse -q $last | decode utf-8 | str trim)
+          ] | str join ' ')
+        }"
+      }
+    ]
+  }
+  {
+    name: change_dir_with_fzf
+    modifier: control
+    keycode: char_f
+    mode: [emacs, vi_normal, vi_insert]
+    event: {
+      send: ExecuteHostCommand,
+      cmd: "cd ( history
+      | where cwd !~ '.*[0-9]{4}/[0-9]{2}/[0-9]{2}'
+      | sort-by start_timestamp
+      | reverse
+      | get cwd
+      | uniq
+      | where $it =~ $env.HOME
+      | str replace $env.HOME '~'
+      | where $it != '~'
+      | first 150
+      | str join \"\\n\"
+      | fzf --height=40% --layout=reverse
+      | decode utf-8
+      | str trim
+      )"
+    }
+  }
+]
