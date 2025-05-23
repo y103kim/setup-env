@@ -34,6 +34,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- clipboard, yank
 vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("v", "<c-c>", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- goto
