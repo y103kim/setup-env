@@ -52,4 +52,3 @@ vim.keymap.set("n", "<leader>fR", "<cmd>FzfLua grep_project<cr>")
 
 -- run
 vim.keymap.set("n", "<leader>rr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>rf", vim.lsp.buf.format)
