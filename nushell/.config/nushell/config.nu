@@ -48,22 +48,36 @@ git config --global color.diff.whitespace "red reverse"
 
 # Edit files modified in the last commit
 def vimgs [] {
-    let modified_files = (git log --name-only --format='' -1 | lines | where ($it | str trim | str length) > 0)
-    if ($modified_files | is-empty) {
-        echo "No files found in the last commit"
-        return
-    }
-    nvim ...$modified_files
+  let git_root = (git rev-parse --show-toplevel)
+  let pwd_relative = ($env.PWD | path relative-to $git_root)
+
+  let files = (git log --name-only --format='' -1 | lines)
+  let trimmed = ($files | where ($it | str trim | str length) > 0)
+  let abs_paths = ($trimmed | each { |f| $git_root | path join $f })
+  let modified_files = ($abs_paths | each { |f| $f | path relative-to $env.PWD })
+
+  if ($modified_files | is-empty) {
+    echo "No files found in the last commit"
+    return
+  }
+  nvim ...$modified_files
 }
 
 # Edit files that are currently modified according to git diff
 def vimgd [] {
-    let modified_files = (git diff --name-only | lines | where ($it | str trim | str length) > 0)
-    if ($modified_files | is-empty) {
-        echo "No modified files found"
-        return
-    }
-    nvim ...$modified_files
+  let git_root = (git rev-parse --show-toplevel)
+  let pwd_relative = ($env.PWD | path relative-to $git_root)
+
+  let files = (git diff --name-only | lines)
+  let trimmed = ($files | where ($it | str trim | str length) > 0)
+  let abs_paths = ($trimmed | each { |f| $git_root | path join $f })
+  let modified_files = ($abs_paths | each { |f| $f | path relative-to $env.PWD })
+
+  if ($modified_files | is-empty) {
+    echo "No modified files found"
+    return
+  }
+  nvim ...$modified_files
 }
 
 # PATH
@@ -128,7 +142,6 @@ $env.config.keybindings = [
         send: ExecuteHostCommand
         cmd: "commandline edit --insert (
         history
-        | where exit_status == 0
         | get command
         | uniq
         | reverse
