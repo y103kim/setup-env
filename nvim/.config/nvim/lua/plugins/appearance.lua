@@ -1,23 +1,33 @@
 return {
   {
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('dashboard').setup {
+        -- config
+      }
+    end,
+    dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+  },
+  {
     'akinsho/bufferline.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
       "Mofiqul/vscode.nvim",
     },
-    config = function ()
-      require("bufferline").setup{
+    config = function()
+      require("bufferline").setup {
         options = {
           separator_style = "slant",
         },
       }
-      require('vscode').setup{
+      require('vscode').setup {
         -- transparent = true,
         italic_comments = true,
         underline_links = true,
       }
       vim.cmd.colorscheme "vscode"
-      vim.api.nvim_set_hl(0, "BufferLineFill", {  fg = 'NONE', bg = "#111111" })
+      vim.api.nvim_set_hl(0, "BufferLineFill", { fg = 'NONE', bg = "#111111" })
       vim.api.nvim_set_hl(0, "GitBlameColor", { fg = "#444444" })
       vim.api.nvim_set_hl(0, "FlashBackdrop", { fg = "#777777" })
     end
@@ -25,8 +35,8 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function ()
-      require("lualine").setup{
+    config = function()
+      require("lualine").setup {
         options = {
           theme = 'vscode',
         }
@@ -37,8 +47,13 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = {},
-    config = function ()
-      require("ibl").setup()
+    config = function()
+      require("ibl").setup({
+        exclude = {
+          filetypes = { "help", "dashboard" },
+          buftypes = { "terminal" },
+        }
+      })
     end
   },
   {
@@ -54,6 +69,12 @@ return {
     },
   },
   {
+    "smjonas/inc-rename.nvim",
+    config = function()
+      require("inc_rename").setup({})
+    end,
+  },
+  {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
@@ -63,7 +84,7 @@ return {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     },
-    config = function ()
+    config = function()
       require("noice").setup({
         lsp = {
           override = {
@@ -76,7 +97,7 @@ return {
           command_palette = true,
           bottom_search = true,
           long_message_to_split = true,
-          inc_rename = false,
+          inc_rename = true,
           lsp_doc_border = false,
         },
       })
