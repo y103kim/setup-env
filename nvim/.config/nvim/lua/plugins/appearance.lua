@@ -92,7 +92,7 @@ return {
     "rcarriga/nvim-notify",
     lazy = false,
     opts = {
-      timeout = 2000,
+      timeout = 1000,
       on_open = function(win)
         vim.api.nvim_win_set_config(win, { focusable = false })
       end,
@@ -123,6 +123,19 @@ return {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
             ["vim.lsp.util.stylize_markdown"] = true,
             ["cmp.entry.get_documentation"] = true,
+          },
+        },
+        routes = {
+          {
+            filter = {
+              event = "msg_show",
+              any = {
+                { find = "%d+L, %d+B" },
+                { find = "; after #%d+" },
+                { find = "; before #%d+" },
+              },
+            },
+            view = "mini",
           },
         },
         presets = {

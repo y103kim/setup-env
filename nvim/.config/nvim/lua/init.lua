@@ -12,6 +12,11 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.wrap = false
+vim.opt.colorcolumn = "100"
+
 require("config.lazy")
 
 -- basic key maps
@@ -30,6 +35,7 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "<esc>", function() require("noice").cmd("dismiss") end)
 
 -- clipboard, yank
 vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -52,6 +58,6 @@ vim.keymap.set("n", "<leader>fR", "<cmd>FzfLua grep_project<cr>")
 
 -- run
 vim.keymap.set("n", "<leader>rr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>rn", function()
-  return ":IncRename " .. vim.fn.expand("<cword>")
-end, { expr = true })
+vim.keymap.set("n", "<leader>rn", ":IncRename ")
+vim.keymap.set('n', '<leader>ru', vim.cmd.UndotreeToggle)
+

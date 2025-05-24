@@ -21,7 +21,7 @@ return {
         python = { "yapf" },
         javascript = { "prettierd", "prettier" },
       },
-      -- Set default options
+      -- See default options
       default_format_opts = {
         lsp_format = "fallback",
       },
@@ -153,6 +153,26 @@ return {
           prefix = "",
         },
       })
+    end
+  },
+  {
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+    },
+    config = function()
+      require("trouble").setup({})
     end
   },
 }

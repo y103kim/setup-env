@@ -1,4 +1,5 @@
 return {
+  { 'mbbill/undotree' },
   {
     'nvim-focus/focus.nvim',
     version = '*',
