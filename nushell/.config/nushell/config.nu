@@ -146,7 +146,7 @@ $env.config.keybindings = [
         | uniq
         | reverse
         | str join (char -i 0)
-        | fzf --scheme=history --read0 --layout=reverse --height=40% -q (commandline)
+        | fzf --scheme=history --read0 --layout=reverse --height=40% -q (commandline) --no-sort -x
         | decode utf-8
         | str trim
         )"
