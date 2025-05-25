@@ -61,21 +61,6 @@ return {
       "mason-org/mason.nvim",
       "mason-org/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      {
-        "hrsh7th/nvim-cmp",
-        opts = function(_, opts)
-          opts.sources = opts.sources or {}
-          table.insert(opts.sources, {
-            name = "lazydev",
-            group_index = 0,
-          })
-        end,
-      },
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
       "j-hui/fidget.nvim",
     },
     config = function()
@@ -107,30 +92,6 @@ return {
         }
       })
 
-      local cmp = require('cmp')
-      local cmp_select = { behavior = cmp.SelectBehavior.Insert }
-      cmp.setup({
-        mapping = cmp.mapping.preset.insert({
-          ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-          ['<S-Tab>'] = cmp.mapping.select_next_item(cmp_select),
-          ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-          ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
-          ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        }),
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'path' },
-          { name = 'buffer' },
-        })
-      })
-
-      -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline({ '/', '?' }, {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = 'buffer' }
-        }
-      })
 
       vim.diagnostic.config({
         -- update_in_insert = true,

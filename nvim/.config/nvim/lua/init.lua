@@ -71,3 +71,4 @@ local neotreePrefix = "<cmd>Neotree toggle float "
 vim.keymap.set("n", "<leader>ef", neotreePrefix.."<CR>", { desc = "NeoTree File" })
 vim.keymap.set("n", "<leader>eb", neotreePrefix.."buffers<CR>", { desc = "NeoTree buffer" })
 vim.keymap.set("n", "<leader>eg", neotreePrefix.."git_status<CR>", { desc = "NeoTree git" })
+
