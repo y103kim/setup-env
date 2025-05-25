@@ -1,13 +1,6 @@
 return {
   { 'mbbill/undotree' },
   {
-    'nvim-focus/focus.nvim',
-    version = '*',
-    config = function()
-      require("focus").setup()
-    end,
-  },
-  {
     "greggh/claude-code.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim", -- Required for git operations
