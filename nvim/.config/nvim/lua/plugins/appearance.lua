@@ -136,7 +136,7 @@ return {
           },
         },
         presets = {
-          command_palette = true,
+          command_palette = false,
           bottom_search = true,
           long_message_to_split = true,
           inc_rename = true,

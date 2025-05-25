@@ -75,7 +75,7 @@ return {
         settings = {
           Lua = {
             diagnostics = {
-              disable = { "missing-parameter" }
+              disable = { "missing-parameter", "missing-fields" }
             }
           }
         }
