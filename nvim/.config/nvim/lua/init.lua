@@ -63,7 +63,11 @@ vim.keymap.set("n", "<leader>rn", incRename, { expr = true })
 vim.keymap.set('n', '<leader>ru', vim.cmd.UndotreeToggle, { desc = "Toggle undotree" })
 vim.keymap.set('n', '<leader>ra', '<cmd>ClaudeCode<CR>', { desc = 'Toggle Claude Code' })
 vim.keymap.set('n', '<C-\\>', '<cmd>ClaudeCode<CR>', { desc = 'Toggle Claude Code' })
-vim.keymap.set("n", "<leader>rf", "<cmd>Neotree toggle<CR>", { desc = "NeoTree" })
 
 local fmt = function() require("conform").format({ async = true }) end
 vim.keymap.set({ "n", "v" }, "<leader>f", fmt, { desc = "Format buffer" })
+
+local neotreePrefix = "<cmd>Neotree toggle float "
+vim.keymap.set("n", "<leader>ef", neotreePrefix.."<CR>", { desc = "NeoTree File" })
+vim.keymap.set("n", "<leader>eb", neotreePrefix.."buffers<CR>", { desc = "NeoTree buffer" })
+vim.keymap.set("n", "<leader>eg", neotreePrefix.."git_status<CR>", { desc = "NeoTree git" })

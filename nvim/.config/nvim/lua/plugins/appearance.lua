@@ -19,6 +19,12 @@ return {
       require("bufferline").setup {
         options = {
           separator_style = "slant",
+          -- custom_filter = function(buf_number, buf_numbers)
+          --   -- filter out filetypes you don't want to see
+          --   if string.find(vim.bo[buf_number].filetype, "^claude%-code") then
+          --     return true
+          --   end
+          -- end,
         },
       }
       require('vscode').setup {
