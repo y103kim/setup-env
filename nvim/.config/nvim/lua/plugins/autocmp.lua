@@ -29,6 +29,7 @@ return {
     config = function()
       local cmp = require('cmp')
       local luasnip = require("luasnip")
+      require("luasnip.loaders.from_lua").load({paths = {"~/.config/nvim/lua/snippets/"}})
       cmp.setup({
         mapping = {
           -- ... Your other mappings ...
@@ -68,6 +69,7 @@ return {
         },
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
+          { name = 'luasnip' },
           { name = 'path' },
           { name = 'buffer' },
         })

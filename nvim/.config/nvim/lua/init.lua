@@ -19,7 +19,6 @@ vim.opt.colorcolumn = "100"
 
 require("config.lazy")
 
-
 -- basic key maps
 vim.keymap.set("n", "<C-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<C-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
