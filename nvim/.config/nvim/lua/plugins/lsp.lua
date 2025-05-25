@@ -64,13 +64,22 @@ return {
       "j-hui/fidget.nvim",
     },
     config = function()
+      local lsp = require("lspconfig")
       require("mason").setup()
-      require("lspconfig").nushell.setup({
+      lsp.nushell.setup({
         cmd = { "nu", "--lsp" },
         filetypes = { "nu" },
         single_file_support = true,
       })
-
+      lsp.lua_ls.setup({
+        settings = {
+          Lua = {
+            diagnostics = {
+              disable = { "missing-parameter" }
+            }
+          }
+        }
+      })
       local capabilities = vim.tbl_deep_extend(
         "force",
         {},
