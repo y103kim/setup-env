@@ -1,6 +1,6 @@
 # ============== 1. CONFIG ZIM ==============
-ZIM_CONFIG_FILE=~/.config/zsh/zimrc
-ZIM_HOME=~/.cache/zim
+export ZIM_CONFIG_FILE=~/.config/zsh/zimrc
+export ZIM_HOME=~/.cache/zim
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
     ZIM_FW_PATH="/opt/homebrew/opt/zimfw/share/zimfw.zsh"
@@ -32,6 +32,8 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # ============== 4. Alias ==============
+export EDITOR="nvim"
+export VISUAL="nvim"
 alias vim='nvim'
 alias vi='nvim'
 alias vimdiff='nvim -d'
