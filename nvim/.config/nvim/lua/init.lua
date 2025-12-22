@@ -38,6 +38,7 @@ vim.keymap.set("n", "n", "nzzzv", { desc = "Next search (center)" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search (center)" })
 local dismiss_noice = function() require("noice").cmd("dismiss") end
 vim.keymap.set("n", "<esc>", dismiss_noice, { desc = "Dismiss notifications" })
+vim.keymap.set('n', '<leader>dw', [[:%s/\s\+$//e<CR>]])
 
 -- clipboard, yank
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without yank" })
@@ -51,7 +52,7 @@ local hiddenGrep = function()
     rg_opts = "--column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/*'"
   })
 end
-local fzf_lsp = function (cmd)
+local fzf_lsp = function(cmd)
   return "<cmd>FzfLua " .. cmd .. " jump1=true ignore_current_line=true<cr>"
 end
 
