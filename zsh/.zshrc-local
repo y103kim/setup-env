@@ -3,9 +3,9 @@ export ZIM_CONFIG_FILE=~/.config/zsh/zimrc
 export ZIM_HOME=~/.cache/zim
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-    ZIM_FW_PATH="/opt/homebrew/opt/zimfw/share/zimfw.zsh"
+  ZIM_FW_PATH="/opt/homebrew/opt/zimfw/share/zimfw.zsh"
 else
-    ZIM_FW_PATH="/home/linuxbrew/.linuxbrew/opt/zimfw/share/zimfw.zsh"
+  ZIM_FW_PATH="/home/linuxbrew/.linuxbrew/opt/zimfw/share/zimfw.zsh"
 fi
 
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
@@ -15,7 +15,11 @@ fi
 source ${ZIM_HOME}/init.zsh
 
 # =============== 2. CONFIG OTHER SHELL INTEGRATIONS ===============
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+else
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 zvm_after_init_commands+=('source <(fzf --zsh)')
 eval "$(starship init zsh)"
 
@@ -55,7 +59,6 @@ function _git_edit() {
     echo "No matching files found."
     return
   fi
-
   nvim "${edit_list[@]}"
 }
 
