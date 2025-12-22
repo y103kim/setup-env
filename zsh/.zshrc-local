@@ -41,6 +41,7 @@ export VISUAL="nvim"
 alias vim='nvim'
 alias vi='nvim'
 alias vimdiff='nvim -d'
+alias tmux='zellij'
 
 # ============== 5. Functions ==============
 
