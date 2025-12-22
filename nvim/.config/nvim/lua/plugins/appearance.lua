@@ -1,76 +1,86 @@
 return {
   {
-    'goolord/alpha-nvim',
-    dependencies = { 'echasnovski/mini.icons' },
-    config = function()
-      require('alpha').setup(require('alpha.themes.startify').config)
-    end
+    "folke/zen-mode.nvim",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
   },
   {
-    'akinsho/bufferline.nvim',
+    "goolord/alpha-nvim",
+    dependencies = { "echasnovski/mini.icons" },
+    config = function()
+      require("alpha").setup(require("alpha.themes.startify").config)
+    end,
+  },
+  {
+    "akinsho/bufferline.nvim",
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
+      "nvim-tree/nvim-web-devicons",
       "Mofiqul/vscode.nvim",
     },
     config = function()
-      require("bufferline").setup {
+      require("bufferline").setup({
         options = {
           separator_style = "slant",
         },
-      }
-      require('vscode').setup {
+      })
+      require("vscode").setup({
         -- transparent = true,
         italic_comments = true,
         underline_links = true,
-      }
-      vim.cmd.colorscheme "vscode"
-      vim.api.nvim_set_hl(0, "BufferLineFill", { fg = 'NONE', bg = "#111111" })
+      })
+      vim.cmd.colorscheme("vscode")
+      vim.api.nvim_set_hl(0, "BufferLineFill", { fg = "NONE", bg = "#111111" })
       vim.api.nvim_set_hl(0, "GitBlameColor", { fg = "#444444" })
       vim.api.nvim_set_hl(0, "FlashBackdrop", { fg = "#777777" })
-    end
+    end,
   },
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("lualine").setup {
+      require("lualine").setup({
         options = {
           icons_enabled = true,
-          theme = 'vscode',
+          theme = "vscode",
         },
         sections = {
           -- Add the macro recording status in the mode section
-          lualine_a = { function()
-            local reg = vim.fn.reg_recording()
-            -- If a macro is being recorded, show "Recording @<register>"
-            if reg ~= "" then
-              return "Recording @" .. reg
-            else
-              -- Get the full mode name using nvim_get_mode()
-              local mode = vim.api.nvim_get_mode().mode
-              local mode_map = {
-                n = 'NORMAL',
-                i = 'INSERT',
-                v = 'VISUAL',
-                V = 'V-LINE',
-                ['^V'] = 'V-BLOCK',
-                ['\22'] = 'V-BLOCK',
-                c = 'COMMAND',
-                R = 'REPLACE',
-                s = 'SELECT',
-                S = 'S-LINE',
-                ['^S'] = 'S-BLOCK',
-                ['\19'] = 'S-BLOCK',
-                t = 'TERMINAL',
-              }
+          lualine_a = {
+            function()
+              local reg = vim.fn.reg_recording()
+              -- If a macro is being recorded, show "Recording @<register>"
+              if reg ~= "" then
+                return "Recording @" .. reg
+              else
+                -- Get the full mode name using nvim_get_mode()
+                local mode = vim.api.nvim_get_mode().mode
+                local mode_map = {
+                  n = "NORMAL",
+                  i = "INSERT",
+                  v = "VISUAL",
+                  V = "V-LINE",
+                  ["^V"] = "V-BLOCK",
+                  ["\22"] = "V-BLOCK",
+                  c = "COMMAND",
+                  R = "REPLACE",
+                  s = "SELECT",
+                  S = "S-LINE",
+                  ["^S"] = "S-BLOCK",
+                  ["\19"] = "S-BLOCK",
+                  t = "TERMINAL",
+                }
 
-              -- Return the full mode name
-              return mode_map[mode] or mode:upper()
-            end
-          end },
+                -- Return the full mode name
+                return mode_map[mode] or mode:upper()
+              end
+            end,
+          },
         },
-      }
-    end
+      })
+    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -81,9 +91,9 @@ return {
         exclude = {
           filetypes = { "help", "dashboard" },
           buftypes = { "terminal" },
-        }
+        },
       })
-    end
+    end,
   },
   {
     "rcarriga/nvim-notify",
@@ -105,13 +115,12 @@ return {
   },
   {
     "folke/noice.nvim",
-    event = "VeryLazy",
     opts = {
       -- add any options here
     },
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
+      -- "rcarriga/nvim-notify",
     },
     config = function()
       require("noice").setup({
@@ -139,10 +148,10 @@ return {
           command_palette = false,
           bottom_search = true,
           long_message_to_split = true,
-          inc_rename = true,
+          inc_rename = false,
           lsp_doc_border = false,
         },
       })
-    end
+    end,
   },
 }

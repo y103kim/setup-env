@@ -2,7 +2,6 @@ return {
   { "tpope/vim-fugitive" },
   {
     'f-person/git-blame.nvim',
-    event = "VeryLazy",
     opts = {
       enabled = true,
       highlight_group = "GitBlameColor",
