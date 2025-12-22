@@ -1,4 +1,4 @@
-# === 1. CONFIG ZIM ===
+# ============== 1. CONFIG ZIM ==============
 ZIM_CONFIG_FILE=~/.config/zsh/zimrc
 ZIM_HOME=~/.cache/zim
 
@@ -14,21 +14,29 @@ fi
 
 source ${ZIM_HOME}/init.zsh
 
-# === 2. CONFIG OTHER SHELL INTEGRATIONS ===
+# =============== 2. CONFIG OTHER SHELL INTEGRATIONS ===============
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source <(fzf --zsh)
 eval "$(starship init zsh)"
 
-# === 3. Environment Variables ===
+# rg completion
+_rg_comp_dir="$HOME/.cache/zsh-completions"
+[[ -d "$_rg_comp_dir" ]] || mkdir -p "$_rg_comp_dir"
+if [[ ! -f "$_rg_comp_dir/_rg" ]] && (( $+commands[rg] )); then
+  rg --generate complete-zsh > "$_rg_comp_dir/_rg"
+fi
+fpath=("$_rg_comp_dir" $fpath)
+
+# ============== 3. Environment Variables ==============
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# === 4. Alias ===
+# ============== 4. Alias ==============
 alias vim='nvim'
 alias vi='nvim'
 alias vimdiff='nvim -d'
 
-# === 5. Functions ===
+# ============== 5. Functions ==============
 
 function _git_edit() {
   # Helper function (internal)
