@@ -16,9 +16,9 @@ source ${ZIM_HOME}/init.zsh
 
 # =============== 2. CONFIG OTHER SHELL INTEGRATIONS ===============
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-else
   eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 zvm_after_init_commands+=('source <(fzf --zsh)')
 eval "$(starship init zsh)"
