@@ -15,14 +15,18 @@ fi
 source ${ZIM_HOME}/init.zsh
 
 # =============== 2. CONFIG OTHER SHELL INTEGRATIONS ===============
+# Home Brew
 if [[ "$(uname -s)" == "Darwin" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
+# FZF
 zvm_after_init_commands+=('source <(fzf --zsh)')
+# starship
 eval "$(starship init zsh)"
-
+# FNM
+eval "$(fnm env --use-on-cd --shell zsh)"
 # rg completion
 _rg_comp_dir="$HOME/.cache/zsh-completions"
 [[ -d "$_rg_comp_dir" ]] || mkdir -p "$_rg_comp_dir"
